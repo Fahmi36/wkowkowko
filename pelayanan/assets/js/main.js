@@ -1,6 +1,91 @@
 $(document).ready(function(){
     $('#npwpF').focus();
+    $('.submit').click(function () {
+        location.reload();
+    });
+    $(document).on('keyup', '#npwpF', function (event) {
+        var bak = $(this).val();
+        var sresult = $('.npwpResult');
+        var bnpwp = $('.btn-npwp');
+        var sresulst = "";
+        if (bak.length >= 1) {
+            sresult.addClass('shows');
+            bnpwp.removeAttr("disabled");
+            sresulst += "<li>\n" +
+                "                        <span class=\"font-weight-bold\">Data NPWP ditemukan</span>\n" +
+                "                        <hr class=\"mt-2 mb-0\">\n" +
+                "                        <div class=\"npwp-detail\">\n" +
+                "                            <div class=\"npwp-detail_item\">\n" +
+                "                                <div class=\"row w-100\">\n" +
+                "                                    <div class=\"col-md-6 mb-1\">\n" +
+                "                                        <label class=\"npwp-detail_item_label\">Nama :</label>\n" +
+                "                                        <div class=\"npwp-detail_item_div\">\n" +
+                "                                            <span class=\"npwp-detail_item_div_1\">Sdr. Alfamidi Mart</span>\n" +
+                "                                        </div>\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"col-md-6 mb-1\">\n" +
+                "                                        <label class=\"npwp-detail_item_label\">Perusahaan :</label>\n" +
+                "                                        <div class=\"npwp-detail_item_div\">\n" +
+                "                                            <span class=\"npwp-detail_item_div_1\">PT Alam Kubur Mu</span>\n" +
+                "                                        </div>\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"col-md-6 mb-1\">\n" +
+                "                                        <label class=\"npwp-detail_item_label\">NIK :</label>\n" +
+                "                                        <div class=\"npwp-detail_item_div\">\n" +
+                "                                            <span class=\"npwp-detail_item_div_1\">089653967913</span>\n" +
+                "                                        </div>\n" +
+                "                                    </div>\n" +
+                "                                    <div class=\"col-md-6 mb-1\">\n" +
+                "                                        <label class=\"npwp-detail_item_label\">NIP :</label>\n" +
+                "                                        <div class=\"npwp-detail_item_div\">\n" +
+                "                                            <span class=\"npwp-detail_item_div_1\">B 3865 EKD</span>\n" +
+                "                                        </div>\n" +
+                "                                    </div>\n" +
+                "                                </div>\n" +
+                "                            </div>\n" +
+                "                        </div>\n" +
+                "                    </li>";
+        }
+        sresult.html(sresulst);
+    });
 
+//    Alerts
+    var alertwarning = "<div class='alert alert-danger' role='alert'>\n" +
+        "  Maaf, fitur belum tersedia.\n" +
+        "</div>";
+
+    $("#min5k").click(function () {
+
+        $("#alerts").html(alertwarning).fadeIn(1000, "easeInQuint", function () {}).delay(2000).fadeOut(1000, "easeInQuint", function (){});
+    });
+
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+    $("#len5k").click(function () {
+        Swal.fire({
+            text: "Apakah anda sudah mendaftar di OSS?",
+            // type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#ff6704',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, sudah',
+            confirmButtonClass: 'next',
+            cancelButtonText: 'Belum'
+        }).then((result) => {
+            if (!result.value) {
+                Swal.fire(
+                    'Maaf',
+                    'Anda harus mendaftar dulu di OSS.',
+                    location.reload()
+                )
+            }
+        })
+    });
+
+//jQuery time
     var current_fs, next_fs, previous_fs; //fieldsets
     var left, opacity, scale; //fieldset properties which we will animate
     var animating; //flag to prevent quick multi-click glitches
@@ -29,7 +114,8 @@ $(document).ready(function(){
                 opacity = 1 - now;
                 current_fs.css({
                     'transform': 'scale('+scale+')',
-                    'display': 'none'
+                    // 'position': 'absolute',
+                    'display' : 'none'
                 });
                 next_fs.css({'left': left, 'opacity': opacity});
             },
@@ -80,7 +166,7 @@ $(document).ready(function(){
 
     $(".submit").click(function(){
         return false;
-    });
+    })
 
 
     // Cache DOM
