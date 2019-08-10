@@ -11,9 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', function () {
+        return view('layouts.guest');
+    });
 });
+
 
 Auth::routes();
 
