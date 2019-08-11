@@ -59,7 +59,7 @@
             </select>
         </div>
         <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
-        <button type="button" name="next" class="btn btn--main next">DAFTAR IZIN</button>
+        <button type="button" name="next" id="btnDaftarIzin" class="btn btn--main izin">DAFTAR IZIN</button>
     </fieldset>
     <fieldset style="color: #ff6704;">
         <i class="mdi mdi-check-circle mdi-48px"></i>

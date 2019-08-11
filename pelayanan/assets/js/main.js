@@ -79,7 +79,9 @@ $(document).ready(function(){
                 Swal.fire(
                     'Maaf',
                     'Anda harus mendaftar dulu di OSS.',
-                    location.reload()
+                    setTimeout(() => {  
+                        location.reload();
+                    }, 10000)
                 )
             }
         })
