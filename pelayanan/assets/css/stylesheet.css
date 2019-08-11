@@ -201,9 +201,9 @@ body {
 }
 
 .btn {
-    padding: 7px 30px;
+    padding: 8px 30px;
     border: none;
-    border-radius: 30px;
+    /*border-radius: 30px;*/
     font-size: 16px;
 }
 .btn--main {
@@ -212,7 +212,7 @@ body {
 }
 .btn--main:hover {
     color: #fff;
-    font-weight: bold;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #ff6704;
 }
 .btn--main-outline {
     border: 2px solid #fbfffd;
@@ -293,7 +293,7 @@ body {
     width: 100px;
     color: #333;
     border: 0 none;
-    border-radius: 25px;
+    /*border-radius: 25px;*/
     cursor: pointer;
     padding: 10px 5px;
     margin: 10px 5px;
