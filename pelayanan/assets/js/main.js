@@ -33,7 +33,7 @@ $(document).ready(function(){
                 "                                    <div class=\"col-md-6 mb-1\">\n" +
                 "                                        <label class=\"npwp-detail_item_label\">Perusahaan :</label>\n" +
                 "                                        <div class=\"npwp-detail_item_div\">\n" +
-                "                                            <span class=\"npwp-detail_item_div_1\">PT Alam Kubur Mu</span>\n" +
+                "                                            <span class=\"npwp-detail_item_div_1\">PT SP</span>\n" +
                 "                                        </div>\n" +
                 "                                    </div>\n" +
                 "                                    <div class=\"col-md-6 mb-1\">\n" +
@@ -118,7 +118,7 @@ $(document).ready(function(){
 
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
-
+        debugger;
         //activate next step on progressbar using the index of next_fs
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
@@ -216,7 +216,7 @@ $(document).ready(function(){
     };
 
     $goLogin.addEventListener("click", _toggleForm);
-    $goRegister.addEventListener("click", _toggleForm);
+    // $goRegister.addEventListener("click", _toggleForm);
 });
 
 function next() {
