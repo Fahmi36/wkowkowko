@@ -33,7 +33,7 @@ $(document).ready(function(){
                 "                                    <div class=\"col-md-6 mb-1\">\n" +
                 "                                        <label class=\"npwp-detail_item_label\">Perusahaan :</label>\n" +
                 "                                        <div class=\"npwp-detail_item_div\">\n" +
-                "                                            <span class=\"npwp-detail_item_div_1\">PT Alam Kubur Mu</span>\n" +
+                "                                            <span class=\"npwp-detail_item_div_1\">PT SP</span>\n" +
                 "                                        </div>\n" +
                 "                                    </div>\n" +
                 "                                    <div class=\"col-md-6 mb-1\">\n" +
@@ -54,16 +54,6 @@ $(document).ready(function(){
                 "                    </li>";
         }
         sresult.html(sresulst);
-    });
-
-//    Alerts
-    var alertwarning = "<div class='alert alert-danger' role='alert'>\n" +
-        "  Maaf, fitur belum tersedia.\n" +
-        "</div>";
-
-    $("#min5k").click(function () {
-
-        $("#alerts").html(alertwarning).fadeIn(1000, "easeInQuint", function () {}).delay(2000).fadeOut(1000, "easeInQuint", function (){});
     });
 
     $(".custom-file-input").on("change", function() {
@@ -216,7 +206,7 @@ $(document).ready(function(){
     };
 
     $goLogin.addEventListener("click", _toggleForm);
-    $goRegister.addEventListener("click", _toggleForm);
+    // $goRegister.addEventListener("click", _toggleForm);
 });
 
 function next() {
