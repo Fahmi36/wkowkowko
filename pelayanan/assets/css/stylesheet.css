@@ -8,6 +8,10 @@ body {
     font-family: "Roboto", sans-serif;
 }
 
+.bg-pelayanan {
+    background: #ff6704;
+}
+
 .animateWidth {
     -webkit-animation: animateWidth 0.8s linear forwards;
     animation: animateWidth 0.8s linear forwards;

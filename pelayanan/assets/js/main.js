@@ -56,16 +56,6 @@ $(document).ready(function(){
         sresult.html(sresulst);
     });
 
-//    Alerts
-    var alertwarning = "<div class='alert alert-danger' role='alert'>\n" +
-        "  Maaf, fitur belum tersedia.\n" +
-        "</div>";
-
-    $("#min5k").click(function () {
-
-        $("#alerts").html(alertwarning).fadeIn(1000, "easeInQuint", function () {}).delay(2000).fadeOut(1000, "easeInQuint", function (){});
-    });
-
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
@@ -118,7 +108,7 @@ $(document).ready(function(){
 
         current_fs = $(this).parent();
         next_fs = $(this).parent().next();
-        debugger;
+
         //activate next step on progressbar using the index of next_fs
         $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
 
