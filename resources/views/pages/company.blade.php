@@ -1,4 +1,5 @@
 <form id="msform">
+    @csrf
     <!--            ALERT-->
     <div id="alerts"></div>
 
