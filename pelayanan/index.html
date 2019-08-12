@@ -22,23 +22,41 @@
 
             <!-- progressbar -->
             <ul id="progressbar">
-                <li class="active">Luas Bangunan</li>
+                <li class="active">Perizinan</li>
                 <li>NPWP</li>
-                <li>Upload Data</li>
-                <li>Selesai</li>
+                <li>Lokasi</li>
+                <li>Data Administrasi</li>
+                <li>Data Teknis</li>
+                <li>Arahan</li>
+                <li>Selesai <span class="d-block text-muted">(Resume)</span></li>
             </ul>
             <!-- fieldsets -->
             <fieldset>
-                <h3 class="form__heading"> Luas Bangunan<span class="text-danger">*</span> </h3>
-                <p class="form__text text-muted">Pilih luas bangunan yang anda miliki</p>
-                <button type="button" class="btn rounded-0 w-100 btn--main btn--main_luas" id="min5k">< 5000 m<sup>2</sup></button>
-                <hr>
-                <button type="button" class="btn rounded-0 w-100 btn--main btn--main_luas next" id="len5k">> 5000 m<sup>2</sup></button>
+                <!-- <h3 class="form__heading"> Luas Tanah<span class="text-danger">*</span> </h3> -->
+                <!-- <p class="form__text text-muted">Pilih luas bangunan yang anda miliki</p> -->
+                <!-- <button type="button" class="btn rounded-0 w-100 btn--main btn--main_luas" id="min5k">< 5000 m<sup>2</sup></button> -->
+                <!-- <hr> -->
+                <button type="button" class="btn rounded-0 w-100 btn--main btn--main_luas next">MULAI IZIN</button>
             </fieldset>
             <fieldset>
-                <h3 class="form__heading"> NPWP<span class="text-danger">*</span> </h3>
+                <h3 class="form__heading"> DATA<span class="text-danger">*</span> </h3>
                 <p class="form__text text-muted">Masukan nomor NPWP anda</p>
                 <input autocomplete="off" aria-label="Search" type="search" placeholder="" class="form__field mb-0 npwpI" name="npwpF" id="npwpF" style="height: 40px">
+                <ul class="dropdown-search npwpResult">
+
+                </ul>
+                <hr>
+                <span class="text-muted">Optional</span>
+                <input type="email" placeholder="Alamat Email Aktif" class="form__field emailI" name="emailF" id="emailF" style="height: 40px">
+                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
+                <button type="button" name="next" class="btn rounded-0 btn--main btn-npwp next" disabled>Selanjutnya</button>
+            </fieldset>
+            <fieldset>
+                <h3 class="form__heading"> Data Administrasi<span class="text-danger">*</span> </h3>
+                <p class="form__text text-muted">Masukan Form</p>
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="" class="form__field mb-0" name="npwpF" id="npwpF" style="height: 40px">
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="" class="form__field mb-0" name="npwpF" id="npwpF" style="height: 40px">
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="" class="form__field mb-0" name="npwpF" id="npwpF" style="height: 40px">
                 <ul class="dropdown-search npwpResult">
 
                 </ul>
@@ -104,8 +122,8 @@
             <i class="mdi mdi-clipboard-check mdi-48px"></i>
             <h3 class="overlay__heading"> P E R I Z I N A N</h3>
             <p class="overlay__desc">Manfaatkan inovasi terbaru DPMPTSP DKI JAKARTA pada aplikasi PELAYANAN untuk mengajukan IMB Rumah Tinggal / Usaha. Simpel, Mudah, Andal, Reliabel dan Transparan.</p>
-            <div class="dividers mb-2">/</div>
-            <button type="button" id="go-register" class="btn rounded-0 btn--main-outline">Daftar Investasi</button>
+            <!-- <div class="dividers mb-2">/</div> -->
+            <!-- <button type="button" id="go-register" class="btn rounded-0 btn--main-outline">Daftar Investasi</button> -->
         </div>
         <!-- Right Overlay Ends -->
         <!-- Left Overlay Starts -->
