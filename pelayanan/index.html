@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pelayanan Jakarta</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.8/esri/css/main.css">
+    <link href="assets/vendors/mdi/css/materialdesignicons.css" media="all" rel="stylesheet" type="text/css">
+    <link href="assets/vendors/bs-select/css/bootstrap-select.css" media="all" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/css/stylesheet.css" type="text/css">
+</head>
+<body class="bg-light">
+
+<div class="container go-register">
+    <!-- Login Form Starts -->
+    <div class="form__container form__container-login">
+        <form id="msform">
+
+<!--            <div class="row">-->
+<!--                <div class="col-6">-->
+<!--                    <div class="border">-->
+<!--                        <div class="h5">-->
+<!--                            Rekomendasi-->
+<!--                            <span class="d-block">IMB</span>-->
+<!--                        </div>-->
+<!--                        <span class="border bg-primary rounded-circle pl-1 pr-1 font-weight-bold">-->
+<!--                            B-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+            <!-- progressbar -->
+            <ul id="progressbar">
+                <li class="active">Perizinan</li>
+                <li>NPWP</li>
+                <li>Lokasi</li>
+                <li>Data <span class="d-block">Administrasi</span></li>
+                <li>Data Teknis</li>
+                <li>Arahan</li>
+                <li>Selesai <span class="d-block text-muted">(Resume)</span></li>
+            </ul>
+            <!-- fieldsets -->
+            <fieldset>
+                <!-- <h3 class="form__heading"> Luas Tanah<span class="text-danger">*</span> </h3> -->
+                <!-- <p class="form__text text-muted">Pilih luas bangunan yang anda miliki</p> -->
+                <!-- <button type="button" class="btn rounded-0 w-100 btn--main btn--main_luas" id="min5k">< 5000 m<sup>2</sup></button> -->
+                <!-- <hr> -->
+                <button type="button" class="btn rounded-0 w-100 btn--main btn--main_luas next">M U L A I</button>
+            </fieldset>
+
+            <fieldset>
+                <h3 class="form__heading"> NPWP <span class="text-danger">*</span> </h3>
+                <p class="form__text text-muted">Masukan nomor NPWP anda</p>
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="" class="form__field mb-0 npwpI" name="npwpF" id="npwpF" style="height: 40px">
+                <ul class="dropdown-search npwpResult">
+
+                </ul>
+                <hr>
+                <span class="text-muted">Optional</span>
+                <input type="email" placeholder="Alamat Email Aktif" class="form__field emailI" name="emailF" id="emailF" style="height: 40px">
+                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
+                <button type="button" name="next" class="btn rounded-0 btn--main btn-npwp next" disabled>Selanjutnya</button>
+            </fieldset>
+            <fieldset>
+                <h3 class="form__heading"> PETA LOKASI <span class="text-danger">*</span> </h3>
+                <p class="form__text text-muted">Pilih lokasi lahan anda pada peta</p>
+                <div id="maps" style="height: 500px;">
+                </div>
+                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
+                <button type="button" name="next" class="btn rounded-0 btn--main btn-npwp next" disabled>Selanjutnya</button>
+            </fieldset>
+
+            <fieldset>
+                <h3 class="form__heading"> DATA ADMINISTRASI <span class="text-danger">*</span> </h3>
+
+                <span class="text-muted font-weight-bold float-left">1. Detail bangunan gedung</span>
+                <input type="text" placeholder="Fungsi Hunian" class="form__field" name="fhunian" id="fhunian" style="height: 40px">
+                <input type="text" placeholder="Fungsi Keagamaan" class="form__field" name="fkeagamaan" id="fkeagamaan" style="height: 40px">
+                <input type="text" placeholder="Fungsi Usaha" class="form__field" name="fusaha" id="fusaha" style="height: 40px">
+                <input type="text" placeholder="Fungsi Sosial Budaya" class="form__field" name="fsosbud" id="fsosbud" style="height: 40px">
+                <hr>
+                <input type="number" placeholder="Luas Bangunan" class="form__field" name="lbangunan" id="lbangunan" style="height: 40px">
+                <input type="number" placeholder="Tinggi Bangunan" class="form__field float-left w-50" name="tbangunan" id="tbangunan" style="height: 40px">
+                <input type="number" placeholder="Lantai" class="form__field w-50" name="lantai" id="lantai" style="height: 40px">
+                <hr>
+                <span class="text-muted font-weight-bold float-left">2. Tanah</span>
+                <input type="number" placeholder="Total Luas Tanah" class="form__field" name="tltanah" id="tltanah" style="height: 40px">
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
+                <button type="button" name="next" id="btnDaftarAdm" class="btn rounded-0 btn--main next">Selanjutnya</button>
+            </fieldset>
+
+            <fieldset>
+                <h3 class="form__heading"> UPLOAD DATA PERUSAHAAN <span class="text-danger">*</span> </h3>
+                <p class="form__text text-muted">Lengkapi data berikut untuk keperluan lebih lanjut</p>
+                <!--                <input type="file" placeholder="" class="form__field" id="bb">-->
+                <div class="custom-file mb-2">
+                    <input type="file" class="custom-file-input" id="customFile1">
+                    <label class="custom-file-label" for="customFile1">Sertifikat Lahan</label>
+                </div>
+                <div class="custom-file mb-2">
+                    <input type="file" class="custom-file-input" id="customFile2">
+                    <label class="custom-file-label" for="customFile2">File AutoCAD Bangunan</label>
+                </div>
+                <div class="form-group">
+                    <select class="selectpicker form-control" id="konsultan1" data-live-search="true">
+                        <option>- Konsultan Perencanaan -</option>
+                        <option>PT Mencari</option>
+                        <option>PT Cinta</option>
+                        <option>PT Sejati</option>
+                    </select>
+                </div>
+                <hr>
+                <span class="text-muted">Optional</span>
+                <div class="form-group">
+                    <select class="selectpicker form-control" id="konsultan2" data-live-search="true">
+                        <option>- Konsultan Perizinan -</option>
+                        <option>PT Mencari</option>
+                        <option>PT Cinta</option>
+                        <option>PT Sejati</option>
+                    </select>
+                </div>
+                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
+                <button type="button" name="next" id="btnDaftarIzin" class="btn rounded-0 btn--main izin">DAFTAR IZIN</button>
+            </fieldset>
+
+            <fieldset>
+<!--                <input class="">-->
+                <button type="button" name="next" id="" class="btn rounded-0 btn--main next">BAAIKlAAH</button>
+            </fieldset>
+
+            <fieldset>
+                <i class="mdi mdi-check-circle mdi-48px"></i>
+                <h3 class="form__heading"> RESUME </h3>
+                <p class="form__text text-muted">Mohon menunggu maksimal 20 Hari kerja untuk proses verifikasi pendataan bangunan anda. Notifikasi akan dikirimkan ke Email anda.</p>
+                <button type="button" name="submit" class="btn rounded-0 btn--main submit">SELESAI</button>
+            </fieldset>
+        </form>
+    </div>
+    <!-- Login Form Ends -->
+    <!-- Register Form Starts -->
+    <div class="form__container form__container-register">
+        <form action="" class="form">
+            <h3 class="form__heading"> Sedang Dalam Pembuatan</h3>
+        </form>
+    </div>
+    <!-- Register Form Ends -->
+    <!-- Overlay container Starts -->
+    <div class="overlay-container">
+        <!-- Right Overlay Starts -->
+        <div class="overlay overlay--right">
+            <i class="mdi mdi-clipboard-check mdi-48px"></i>
+            <h3 class="overlay__heading"> P E R I Z I N A N</h3>
+            <p class="overlay__desc">Manfaatkan inovasi terbaru DPMPTSP DKI JAKARTA pada aplikasi PELAYANAN untuk mengajukan IMB Rumah Tinggal / Usaha. Simpel, Mudah, Andal, Reliabel dan Transparan.</p>
+            <!-- <div class="dividers mb-2">/</div> -->
+            <!-- <button type="button" id="go-register" class="btn rounded-0 btn--main-outline">Daftar Investasi</button> -->
+        </div>
+        <!-- Right Overlay Ends -->
+        <!-- Left Overlay Starts -->
+        <div class="overlay overlay--left">
+            <i class="mdi mdi-cash-multiple mdi-48px"></i>
+            <h3 class="overlay__heading">I N V E S T A S I</h3>
+            <p class="overlay__desc">Pelayanan adalah aplikasi perizinan online dari DPMPTSP DKI Jakarta. Kini, hanya dengan 3 langkah mudah permohonan izin SIUP & TDP Anda bisa diajukan.</p>
+            <div class="dividers mb-2">/</div>
+            <button type="button" id="go-login" class="btn rounded-0 btn--main-outline">Daftar Perizinan</button>
+        </div>
+        <!-- Left Overlay Ends -->
+    </div>
+    <!-- Overlay Container Ends -->
+</div>
+
+<!--JS-->
+<script src="assets/js/jquery-3.3.1.slim.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/popper.min.js"></script>
+<script src="assets/js/bootstrap.js"></script>
+<script src="assets/vendors/bs-select/js/bootstrap-select.js"></script>
+<script src="assets/js/jquery.easing.min.js"></script>
+<script src="assets/vendors/swal/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
+<script src="assets/js/polyfill.min.js"></script>
+<script src="https://js.arcgis.com/4.8/"></script>
+<script src="assets/js/arcgis.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
