@@ -78,14 +78,21 @@
                 <h3 class="form__heading"> DATA ADMINISTRASI <span class="text-danger">*</span> </h3>
 
                 <span class="text-muted font-weight-bold float-left">1. Detail bangunan gedung</span>
-                <input type="text" placeholder="Fungsi Hunian" class="form__field" name="fhunian" id="fhunian" style="height: 40px">
-                <input type="text" placeholder="Fungsi Keagamaan" class="form__field" name="fkeagamaan" id="fkeagamaan" style="height: 40px">
-                <input type="text" placeholder="Fungsi Usaha" class="form__field" name="fusaha" id="fusaha" style="height: 40px">
-                <input type="text" placeholder="Fungsi Sosial Budaya" class="form__field" name="fsosbud" id="fsosbud" style="height: 40px">
-                <hr>
                 <input type="number" placeholder="Luas Bangunan" class="form__field" name="lbangunan" id="lbangunan" style="height: 40px">
                 <input type="number" placeholder="Tinggi Bangunan" class="form__field float-left w-50" name="tbangunan" id="tbangunan" style="height: 40px">
                 <input type="number" placeholder="Lantai" class="form__field w-50" name="lantai" id="lantai" style="height: 40px">
+                <div class="form-group">
+                    <label for="happy" class="col-sm-4 col-md-4 control-label text-right">Are you happy ?</label>
+                    <div class="col-sm-7 col-md-7">
+                        <div class="input-group">
+                            <div class="radioBtn btn-group">
+                                <a class="btn btn-primary  active" data-toggle="happy" data-title="Y">YES</a>
+                                <a class="btn btn-primary  notActive" data-toggle="happy" data-title="N">NO</a>
+                            </div>
+                            <input type="hidden" name="happy" class="happy" id="happy">
+                        </div>
+                    </div>
+                </div>
                 <hr>
                 <span class="text-muted font-weight-bold float-left">2. Tanah</span>
                 <input type="number" placeholder="Total Luas Tanah" class="form__field" name="tltanah" id="tltanah" style="height: 40px">
@@ -134,7 +141,7 @@
             </fieldset>
 
             <fieldset>
-                <i class="mdi mdi-check-circle mdi-48px"></i>
+                <i class="mdi mdi-check-circle mdi-48px" style="color: #ff6704;"></i>
                 <h3 class="form__heading"> RESUME </h3>
                 <p class="form__text text-muted">Mohon menunggu maksimal 20 Hari kerja untuk proses verifikasi pendataan bangunan anda. Notifikasi akan dikirimkan ke Email anda.</p>
                 <button type="button" name="submit" class="btn rounded-0 btn--main submit">SELESAI</button>
