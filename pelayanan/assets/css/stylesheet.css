@@ -493,8 +493,21 @@ body {
 }
 
 /*RADIO*/
+.btn-pelayanan {
+    background: #ff6704;
+    color: #fff!important;
+    border-color: #ff6704;
+}
 .radioBtn .notActive{
-    color: #525252;
+    color: #ff6704!important;
     background-color: #fff;
-    border: 1px #525252 solid;
+    border: 1px #ff6704 solid;
+}
+.labelRad {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    margin-bottom: 0px!important;
+    text-align: left;
+    color: #6c757d !important;
 }

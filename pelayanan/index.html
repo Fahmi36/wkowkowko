@@ -19,19 +19,19 @@
     <div class="form__container form__container-login">
         <form id="msform">
 
-<!--            <div class="row">-->
-<!--                <div class="col-6">-->
-<!--                    <div class="border">-->
-<!--                        <div class="h5">-->
-<!--                            Rekomendasi-->
-<!--                            <span class="d-block">IMB</span>-->
-<!--                        </div>-->
-<!--                        <span class="border bg-primary rounded-circle pl-1 pr-1 font-weight-bold">-->
-<!--                            B-->
-<!--                        </span>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
+            <!--            <div class="row">-->
+            <!--                <div class="col-6">-->
+            <!--                    <div class="border">-->
+            <!--                        <div class="h5">-->
+            <!--                            Rekomendasi-->
+            <!--                            <span class="d-block">IMB</span>-->
+            <!--                        </div>-->
+            <!--                        <span class="border bg-primary rounded-circle pl-1 pr-1 font-weight-bold">-->
+            <!--                            B-->
+            <!--                        </span>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
 
             <!-- progressbar -->
             <ul id="progressbar">
@@ -82,14 +82,44 @@
                 <input type="number" placeholder="Tinggi Bangunan" class="form__field float-left w-50" name="tbangunan" id="tbangunan" style="height: 40px">
                 <input type="number" placeholder="Lantai" class="form__field w-50" name="lantai" id="lantai" style="height: 40px">
                 <div class="form-group">
-                    <label for="happy" class="col-sm-4 col-md-4 control-label text-right">Are you happy ?</label>
-                    <div class="col-sm-7 col-md-7">
-                        <div class="input-group">
-                            <div class="radioBtn btn-group">
-                                <a class="btn btn-primary  active" data-toggle="happy" data-title="Y">YES</a>
-                                <a class="btn btn-primary  notActive" data-toggle="happy" data-title="N">NO</a>
+                    <div class="row">
+                        <label for="sel1" class="col-md-2 offset-md-3 control-label labelRad">Izin Lokasi</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="radioBtn btn-group">
+                                    <a class="btn btn-pelayanan  active" data-toggle="happy" data-title="Y">ADA</a>
+                                    <a class="btn btn-pelayanan  notActive" data-toggle="happy" data-title="N">TIDAK ADA</a>
+                                </div>
+                                <input type="hidden" name="happy" class="happy" id="sel1">
                             </div>
-                            <input type="hidden" name="happy" class="happy" id="happy">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="sel2" class="col-md-2 offset-md-3 control-label labelRad">IPPR</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="radioBtn btn-group">
+                                    <a class="btn btn-pelayanan  active" data-toggle="happy" data-title="Y">ADA</a>
+                                    <a class="btn btn-pelayanan  notActive" data-toggle="happy" data-title="N">TIDAK ADA</a>
+                                </div>
+                                <input type="hidden" name="happy" class="happy" id="sel2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <label for="sel3" class="col-md-2 offset-md-3 control-label labelRad">UGDI</label>
+                        <div class="col-md-6">
+                            <div class="input-group">
+                                <div class="radioBtn btn-group">
+                                    <a class="btn btn-pelayanan  active" data-toggle="happy" data-title="Y">ADA</a>
+                                    <a class="btn btn-pelayanan  notActive" data-toggle="happy" data-title="N">TIDAK ADA</a>
+                                </div>
+                                <input type="hidden" name="happy" class="happy" id="sel3">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,25 +166,55 @@
             </fieldset>
 
             <fieldset>
-<!--                <input class="">-->
-                <button type="button" name="next" id="" class="btn rounded-0 btn--main next">BAAIKlAAH</button>
+                <div class="col-md-12 mb-3">
+                    <div class="border p-3">
+                        <span class="h5">REKOMENDASI</span>
+                        <span class="d-block h2">IMB</span>
+                        <hr>
+                        <p class="text-justify">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                    </div>
+                </div>
+                <button type="button" name="next" id="" class="btn rounded-0 btn--main next">LANJUTKAN</button>
             </fieldset>
 
             <fieldset>
-                <i class="mdi mdi-check-circle mdi-48px" style="color: #ff6704;"></i>
-                <h3 class="form__heading"> RESUME </h3>
-                <p class="form__text text-muted">Mohon menunggu maksimal 20 Hari kerja untuk proses verifikasi pendataan bangunan anda. Notifikasi akan dikirimkan ke Email anda.</p>
+<!--                <i class="mdi mdi-check-circle mdi-48px" style="color: #ff6704;"></i>-->
+<!--                <h3 class="form__heading"> RESUME </h3>-->
+<!--                <p class="form__text text-muted">Mohon menunggu maksimal 20 Hari kerja untuk proses verifikasi pendataan bangunan anda. Notifikasi akan dikirimkan ke Email anda.</p>-->
+                <div class="col-md-12 mb-3">
+                    <div class="border p-3 text-left">
+                        <span class="h5 border-bottom">DATA PEMOHON</span>
+                        <div class="mt-2">
+                            <span class="">No. Permohonan : 998324783467326</span>
+                            <span class=" float-right">Log Book : fgt6w7fg333e2trf4</span>
+                        </div>
+                        <hr>
+                        <span class="h5 border-bottom">DATA ADMINISTRASI</span>
+                        <div class="mt-2">
+                            <span class="">Detail Bangunan : #######</span>
+                            <span class=" float-right">Tanah : #######</span>
+                        </div>
+                        <hr>
+                        <span class="h5 border-bottom">DATA TEKNIS</span>
+                        <div class="mt-2">
+                            <span class="">Ukuran Bangunan : #######</span>
+                            <span class=" float-right">Rekomendasi : #######</span>
+                        </div>
+                    </div>
+                </div>
                 <button type="button" name="submit" class="btn rounded-0 btn--main submit">SELESAI</button>
             </fieldset>
         </form>
     </div>
     <!-- Login Form Ends -->
     <!-- Register Form Starts -->
-    <div class="form__container form__container-register">
-        <form action="" class="form">
-            <h3 class="form__heading"> Sedang Dalam Pembuatan</h3>
-        </form>
-    </div>
+    <!--    <div class="form__container form__container-register">-->
+    <!--        <form action="" class="form">-->
+    <!--            <h3 class="form__heading"> Sedang Dalam Pembuatan</h3>-->
+    <!--        </form>-->
+    <!--    </div>-->
     <!-- Register Form Ends -->
     <!-- Overlay container Starts -->
     <div class="overlay-container">
