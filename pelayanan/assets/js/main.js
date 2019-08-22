@@ -101,6 +101,21 @@ $(document).ready(function(){
         })
     });
 
+    $("#btnAi").click(function () {
+        var data = {dzona : $("#zona").val(),dsubzona : $("#subzona").val(),dlbangunan : $("#lbangunan").val(),dtbbangunan: $("#tbangunan").val(),dtltanah: $("#tltanah").val(),
+        fbbangunan: $("#fungsi_bangunan").val()}
+        $.ajax({
+            url: 'https://perizinan.pkkmart.com/getdata',
+            type: 'POST',
+            data: data,
+            beforeSend:function() {
+                // console.log(data);
+            },
+            success:function() {
+                next();
+            }
+        });
+    });
 
     $(".next").click(function(){
         if(animating) return false;
