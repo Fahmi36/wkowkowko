@@ -52,6 +52,26 @@ body {
     text-align: center;
     background: #fff;
     transition: all 0.6s ease-in;
+    overflow: auto;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #fc8a82;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #fc364f;
 }
 .go-login .form__container-login {
     left: 35%;
@@ -490,4 +510,24 @@ body {
 /*UPLOAD*/
 .custom-file-input {
     cursor: pointer;
+}
+
+/*RADIO*/
+.btn-pelayanan {
+    background: #ff6704;
+    color: #fff!important;
+    border-color: #ff6704;
+}
+.radioBtn .notActive{
+    color: #ff6704!important;
+    background-color: #fff;
+    border: 1px #ff6704 solid;
+}
+.labelRad {
+    display: flex;
+    align-items: center;
+    width: 20%;
+    margin-bottom: 0px!important;
+    text-align: left;
+    color: #6c757d !important;
 }
