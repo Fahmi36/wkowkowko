@@ -6,7 +6,6 @@ var animating; //flag to prevent quick multi-click glitches
 $(document).ready(function(){
     $('.selectpicker').selectpicker();
 
-    $('#npwpF').focus();
     $('.submit').click(function () {
         location.reload();
     });
@@ -56,12 +55,28 @@ $(document).ready(function(){
         sresult.html(sresulst);
     });
 
+    $(document).on('keyup', '#noRegBang', function (event) {
+        var reg = $(this).val();
+        var regresult = $('.noregResult');
+        var bnreg = $('.btn-noreg');
+        var regresults = "";
+        if (reg.length >= 1) {
+            regresult.addClass('shows');
+            bnreg.removeAttr("disabled");
+            regresults += "<li>\n" +
+                "<span class=\"font-weight-bold\">Data Bangunan di Temukan</span>\n" +
+                "<hr class=\"mt-2 mb-0\">\n" +
+                "</li>";
+        }
+        regresult.html(regresults);
+    });
+
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
     });
 
-    $("#len5k").click(function () {
+    $("#btnDaftarAdm").click(function () {
         Swal.fire({
             text: "Apakah anda sudah mendaftar di OSS?",
             // type: 'warning',
@@ -84,26 +99,28 @@ $(document).ready(function(){
         })
     });
 
-    $("#btnDaftarIzin").click(function () {
-        Swal.fire({
-            text: "Apakah anda sudah pastikah bahwa data yang anda masukan benar ?",
-            // type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#ff6704',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, sudah',
-            confirmButtonClass: 'next',
-            cancelButtonText: 'Belum'
-        }).then((result) => {
-            if (result.value) {
-                next();
-            }
-        })
-    });
+    // $("#btnDaftarIzin").click(function () {
+    //     Swal.fire({
+    //         text: "Apakah anda sudah pastikah bahwa data yang anda masukan benar ?",
+    //         // type: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#ff6704',
+    //         cancelButtonColor: '#d33',
+    //         confirmButtonText: 'Ya, sudah',
+    //         confirmButtonClass: 'next',
+    //         cancelButtonText: 'Belum'
+    //     }).then((result) => {
+    //         if (result.value) {
+    //             next();
+    //         }
+    //     })
+    // });
 
     $("#btnAi").click(function () {
         var data = {dzona : $("#zona").val(),dsubzona : $("#subzona").val(),dlbangunan : $("#lbangunan").val(),dtbbangunan: $("#tbangunan").val(),dtltanah: $("#tltanah").val(),
-        fbbangunan: $("#fungsi_bangunan").val()}
+            fbbangunan: $("#fungsi_bangunan").val(),
+
+        }
         $.ajax({
             url: 'https://perizinan.pkkmart.com/getdata',
             type: 'POST',
@@ -224,14 +241,12 @@ $(document).ready(function(){
     // $goRegister.addEventListener("click", _toggleForm);
 
 //    RADIO BUTTON
-    $(document).ready(function() {
-        $('.container').on('click', '.radioBtn a', function() {
-            var sel = $(this).data('title');
-            var tog = $(this).data('toggle');
-            $(this).parent().next('.' + tog).prop('value', sel);
-            $(this).parent().find('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
-            $(this).parent().find('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
-        });
+    $('.container').on('click', '.radioBtn a', function() {
+        var sel = $(this).data('title');
+        var tog = $(this).data('toggle');
+        $(this).parent().next('.' + tog).prop('value', sel);
+        $(this).parent().find('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+        $(this).parent().find('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
     });
 });
 
