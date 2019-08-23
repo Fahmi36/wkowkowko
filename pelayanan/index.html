@@ -18,148 +18,44 @@
     <!-- Login Form Starts -->
     <div class="form__container form__container-login">
         <form id="msform">
-
-            <!--            <div class="row">-->
-            <!--                <div class="col-6">-->
-            <!--                    <div class="border">-->
-            <!--                        <div class="h5">-->
-            <!--                            Rekomendasi-->
-            <!--                            <span class="d-block">IMB</span>-->
-            <!--                        </div>-->
-            <!--                        <span class="border bg-primary rounded-circle pl-1 pr-1 font-weight-bold">-->
-            <!--                            B-->
-            <!--                        </span>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-
             <!-- progressbar -->
             <ul id="progressbar">
                 <li class="active">Perizinan</li>
                 <li>Lokasi</li>
                 <li>Data <span class="d-block">Administrasi</span></li>
-                <li>Arahan</li>
-                <li>NPWP</li>
                 <li>Data Teknis</li>
+                <li>Perencanaan</li>
                 <li>Selesai <span class="d-block text-muted">(Resume)</span></li>
             </ul>
             <!-- fieldsets -->
             <fieldset>
-                <!-- <h3 class="form__heading"> Luas Tanah<span class="text-danger">*</span> </h3> -->
-                <!-- <p class="form__text text-muted">Pilih luas bangunan yang anda miliki</p> -->
-                <!-- <button type="button" class="btn rounded-0 w-100 btn--main btn--main_luas" id="min5k">< 5000 m<sup>2</sup></button> -->
-                <!-- <hr> -->
                 <button type="button" class="btn rounded-0 w-100 btn--main btn--main_luas next">M U L A I</button>
             </fieldset>
+
             <fieldset>
-                <h3 class="form__heading"> PETA LOKASI <span class="text-danger">*</span> </h3>
+                <h3 class="form__heading mb-0"> PETA LOKASI <span class="text-danger">*</span> </h3>
                 <p class="form__text text-muted">Pilih lokasi lahan anda pada peta</p>
-                <div id="maps" style="height: 500px;"></div>
+                <a class="btn rounded-0 btn--main font-weight-bold" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="mdi mdi-map-marker-radius mdi-18px"></i> Tentukan di Peta
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <div id="maps" style="height: 500px;"></div>
+                    </div>
+                </div>
+                <hr>
+                <div class="ui-widget">
+                    <input type="text" class="form__field" name="tltanah" placeholder="Fungsi bangunan anda" id="fungsi_bangunan" style="height: 40px">
+                </div>
+                <span id="izinkan" style="display: none;"></span>
                 <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
                 <button type="button" name="next" id="btnDaftarAdm" class="btn rounded-0 btn--main next">Selanjutnya</button>
             </fieldset>
 
             <fieldset>
                 <h3 class="form__heading"> DATA ADMINISTRASI <span class="text-danger">*</span> </h3>
-                <span class="text-muted font-weight-bold float-left">1.Data Sub Zona dan Zona</span>
-                <input type="text" placeholder="Zona" class="form__field" name="lbangunan" id="zona" readonly style="height: 40px">
-                <input type="text" placeholder="Sub Zona" class="form__field" name="lbangunan" id="subzona" readonly style="height: 40px">
-                <span class="text-muted font-weight-bold float-left">2. Detail Lahan Bangunan</span>
-                <div class="form-group mt-4">
-                    <div class="row">
-                        <label for="sel1" class="col-md-2 offset-md-3 control-label labelRad">Lahan Kosong</label>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <div class="radioBtn btn-group">
-                                    <a class="btn btn-pelayanan  active" data-toggle="happy" data-title="Y">KOSONG</a>
-                                    <a class="btn btn-pelayanan  notActive" data-toggle="happy" data-title="N">TIDAK KOSONG</a>
-                                </div>
-                                <input type="hidden" name="happy" class="happy" id="sel1">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <span class="text-muted font-weight-bold float-left">2. </span> -->
-                <span class="text-muted font-weight-bold float-left">3. Detail bangunan gedung</span>
-                <input type="number" placeholder="Luas Total Bangunan" class="form__field" name="lbangunan" id="lbangunan" style="height: 40px">
-                <input type="number" placeholder="Luas Tapak Bangunan" class="form__field float-left w-50" name="tbangunan" id="tbangunan" style="height: 40px">
-                <input type="number" placeholder="Jumlah Lantai" class="form__field w-50" name="lantai" id="lantai" style="height: 40px">
-                <div class="form-group">
-                    <div class="row">
-                        <label for="sel1" class="col-md-2 offset-md-3 control-label labelRad">Izin Lokasi</label>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <div class="radioBtn btn-group">
-                                    <a class="btn btn-pelayanan  active" data-toggle="happy" data-title="Y">ADA</a>
-                                    <a class="btn btn-pelayanan  notActive" data-toggle="happy" data-title="N">TIDAK ADA</a>
-                                </div>
-                                <input type="hidden" name="happy" class="happy" id="sel1">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <label for="sel2" class="col-md-2 offset-md-3 control-label labelRad">IPPR</label>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <div class="radioBtn btn-group">
-                                    <a class="btn btn-pelayanan  active" data-toggle="happy" data-title="Y">ADA</a>
-                                    <a class="btn btn-pelayanan  notActive" data-toggle="happy" data-title="N">TIDAK ADA</a>
-                                </div>
-                                <input type="hidden" name="happy" class="happy" id="sel2">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <label for="sel3" class="col-md-2 offset-md-3 control-label labelRad">UGDI</label>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <div class="radioBtn btn-group">
-                                    <a class="btn btn-pelayanan  active" data-toggle="happy" data-title="Y">ADA</a>
-                                    <a class="btn btn-pelayanan  notActive" data-toggle="happy" data-title="N">TIDAK ADA</a>
-                                </div>
-                                <input type="hidden" name="happy" class="happy" id="sel3">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <span class="text-muted font-weight-bold float-left">4. Tanah (Sesuai Daerah Perencanaan)</span>
-                <input type="number" placeholder="Total Luas Tanah" class="form__field" name="tltanah" id="tltanah" style="height: 40px">
-                <span class="text-muted font-weight-bold float-left">5. Fungsi Bangunan</span>
-                <div class="ui-widget">
-                  <input type="text" class="form__field" name="tltanah" placeholder="Ingin Membangun" id="fungsi_bangunan" style="height: 40px">
-                </div>
-                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
-                <button type="button" name="next" id="btnAi" class="btn rounded-0 btn--main next">Selanjutnya</button>
-            </fieldset>
-
-
-            <fieldset>
-                <div class="col-md-12 mb-3">
-                    <div class="border p-3">
-                        <span class="h5">REKOMENDASI</span>
-                        <span class="d-block h2">IMB "A"</span>
-                        <hr>
-                        <h5 style="text-align: left;">Fotokopi SIPPT/IPPR yang masih berlaku, jika :</h5>
-                        <ol style="padding: 18px;text-align: left;">
-                            <li>Luas tanah ≥ 5.000 m2;</li>
-                            <li>Tanah bukan milik Pemerintah Provinsi DKI Jakarta;</li>
-                            <li>Tanah bukan milik BUMD Provinsi DKI Jakarta yang tidak dikerjasamakan dengan pihak swasta dan Ketentuan pengecualian lainnya;</li>
-                        </ol> 
-                    </div>
-                </div>
-                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
-                <button type="button" name="next" id="" class="btn rounded-0 btn--main next">LANJUTKAN</button>
-            </fieldset>
-
-            <fieldset>
-                <h3 class="form__heading"> NPWP <span class="text-danger">*</span> </h3>
                 <p class="form__text text-muted">Masukan nomor NPWP anda</p>
-                <input autocomplete="off" aria-label="Search" type="search" placeholder="" class="form__field mb-0 npwpI" name="npwpF" id="npwpF" style="height: 40px">
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="Nomor NPWP" class="form__field mb-0 npwpI" name="npwpF" id="npwpF" style="height: 40px">
                 <ul class="dropdown-search npwpResult">
 
                 </ul>
@@ -169,38 +65,119 @@
                 <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
                 <button type="button" name="next" class="btn rounded-0 btn--main btn-npwp next" disabled>Selanjutnya</button>
             </fieldset>
+
             <fieldset>
-                <h3 class="form__heading"> UPLOAD DATA PERUSAHAAN <span class="text-danger">*</span> </h3>
-                <p class="form__text text-muted">Lengkapi data berikut untuk keperluan lebih lanjut</p>
-                <!--                <input type="file" placeholder="" class="form__field" id="bb">-->
-                <div class="custom-file mb-2">
-                    <input type="file" class="custom-file-input" id="customFile1">
-                    <label class="custom-file-label" for="customFile1">Sertifikat Lahan</label>
-                </div>
+                <h3 class="form__heading"> TEMUKAN DATA BANGUNAN <span class="text-danger">*</span> </h3>
+                <p class="form__text text-muted">Isikan formulir berikut untuk keperluan lebih lanjut</p>
+
+                <input type="text" autocomplete="off" placeholder="Nomor Registrasi Bangunan" class="form__field" id="noRegBang" name="noRegBang" style="height: 40px">
+
+                <ul class="dropdown-search noregResult">
+
+                </ul>
+                <!--                <div class="custom-file mb-2">-->
+                <!--                    <input type="file" class="custom-file-input" id="customFile1">-->
+                <!--                    <label class="custom-file-label" for="customFile1">Sertifikat Lahan</label>-->
+                <!--                </div>-->
                 <!--  <div class="custom-file mb-2">
 					 <input type="file" class="custom-file-input" id="customFile2">
 					 <label class="custom-file-label" for="customFile2">File AutoCAD Bangunan</label>
 				 </div> -->
-                <div class="form-group">
-                    <select class="selectpicker form-control" id="konsultan1" data-live-search="true">
-                        <option>- Konsultan Perencanaan -</option>
-                        <option>PT Mencari</option>
-                        <option>PT Cinta</option>
-                        <option>PT Sejati</option>
-                    </select>
-                </div>
-                <hr>
-                <span class="text-muted">Optional</span>
-                <div class="form-group">
-                    <select class="selectpicker form-control" id="konsultan2" data-live-search="true">
-                        <option>- Konsultan Perizinan -</option>
-                        <option>PT Mencari</option>
-                        <option>PT Cinta</option>
-                        <option>PT Sejati</option>
-                    </select>
-                </div>
+                <!--                <div class="form-group">-->
+                <!--                    <select class="selectpicker form-control" id="konsultan1" data-live-search="true">-->
+                <!--                        <option>- Konsultan Perencanaan -</option>-->
+                <!--                        <option>PT PBU</option>-->
+                <!--                        <option>PT TELKOM</option>-->
+                <!--                        <option>PT ESIA</option>-->
+                <!--                    </select>-->
+                <!--                </div>-->
+                <!--                <hr>-->
+                <!--                <span class="text-muted">Optional</span>-->
+                <!--                <div class="form-group">-->
+                <!--                    <select class="selectpicker form-control" id="konsultan2" data-live-search="true">-->
+                <!--                        <option>- Konsultan Perizinan -</option>-->
+                <!--                        <option>PT PBU</option>-->
+                <!--                        <option>PT TELKOM</option>-->
+                <!--                        <option>PT ESIA</option>-->
+                <!--                    </select>-->
+                <!--                </div>-->
                 <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
-                <button type="button" name="next" id="btnDaftarIzin" class="btn rounded-0 btn--main izin">DAFTAR IZIN</button>
+                <button type="button" name="next" id="btnDaftarIzin" class="btn rounded-0 btn--main btn-noreg next" disabled>Selanjutnya</button>
+            </fieldset>
+
+
+            <fieldset>
+
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="color: #fe692f;font-weight: bold;">
+                                    INVESTASI
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="http://jakevo.jakarta.go.id" target="_blank" class="list-group-item list-group-item-action">Pengembangan Lahan</a>
+                                    <a href="http://jakevo.jakarta.go.id" target="_blank" class="list-group-item list-group-item-action">Infrastruktur</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="color: #fe692f;font-weight: bold;">
+                                    RENOVASI
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="http://jakevo.jakarta.go.id" target="_blank" class="list-group-item list-group-item-action">Pengembangan Lahan</a>
+                                    <a href="http://jakevo.jakarta.go.id" target="_blank" class="list-group-item list-group-item-action">Infrastruktur</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="color: #fe692f;font-weight: bold;">
+                                    MEMBANGUN
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <div class="list-group">
+                                    <a href="http://jakevo.jakarta.go.id" target="_blank" class="list-group-item list-group-item-action">IMB</a>
+                                    <a href="http://jakevo.jakarta.go.id" target="_blank" class="list-group-item list-group-item-action">SLF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--                <div class="col-md-12 mb-3">-->
+                <!--                    <div class="border p-3">-->
+                <!--                        <span class="h5">REKOMENDASI</span>-->
+                <!--                        <span class="d-block h2">IMB "A"</span>-->
+                <!--                        <hr>-->
+                <!--                        <h5 style="text-align: left;">Fotokopi SIPPT/IPPR yang masih berlaku, jika :</h5>-->
+                <!--                        <ol style="padding: 18px;text-align: left;">-->
+                <!--                            <li>Luas tanah ≥ 5.000 m2;</li>-->
+                <!--                            <li>Tanah bukan milik Pemerintah Provinsi DKI Jakarta;</li>-->
+                <!--                            <li>Tanah bukan milik BUMD Provinsi DKI Jakarta yang tidak dikerjasamakan dengan pihak swasta dan Ketentuan pengecualian lainnya;</li>-->
+                <!--                        </ol>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
+                <button type="button" name="next" id="" class="btn rounded-0 btn--main next">LANJUTKAN</button>
             </fieldset>
             <fieldset>
                 <!--                <i class="mdi mdi-check-circle mdi-48px" style="color: #ff6704;"></i>-->
@@ -227,7 +204,8 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" name="submit" class="btn rounded-0 btn--main submit">SELESAI</button>
+                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
+                <button type="button" name="submit" class="btn rounded-0 btn--main submit">KIRIM DATA</button>
             </fieldset>
         </form>
     </div>
@@ -266,7 +244,7 @@
 <!--JS-->
 <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
 <script src="assets/js/jquery.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="assets/js/jquery-ui.js"></script>
 <script src="assets/js/popper.min.js"></script>
 <script src="assets/js/bootstrap.js"></script>
 <script src="assets/vendors/bs-select/js/bootstrap-select.js"></script>
@@ -278,35 +256,13 @@
 <script src="assets/js/arcgis.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
-  $( function() {
-    var availableTags = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $( "#fungsi_bangunan" ).autocomplete({
-      source: availableTags
-    });
-  } );
-  </script>
+    $( function() {
+        console.log($("#izinkan").text());
+        var availableTags = [$("#izinkan").text()];
+        $( "#fungsi_bangunan" ).autocomplete({
+            source: availableTags
+        });
+    } );
+</script>
 </body>
 </html>
