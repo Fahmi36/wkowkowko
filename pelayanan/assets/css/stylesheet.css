@@ -249,10 +249,20 @@ body {
     background: #f7f7f7;
     color: #ff6704;
 }
-.btn--main_luas {
-    height: 70px;
-    font-size: 30px;
+.btn--sectionstep {
+    border-radius: 0px;
+    width: 40%;
+    height: 50px;
+    font-size: 18px;
     font-weight: bold;
+}
+.btn--second:hover {
+    color: #fff;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #ff6704;
+}
+.btn--second {
+    background: linear-gradient(45deg, rgb(162, 53, 86) 0%, rgb(255, 0, 0) 68%, rgb(216, 190, 56) 100%);
+    color: #fff;
 }
 .btn:hover {
     cursor: pointer;
@@ -288,7 +298,7 @@ body {
 }
 
 /*inputs*/
-#msform input, #msform textarea {
+#msform input, #msform textarea, #stepContainer input, #stepContainer textarea {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 0px;
@@ -299,7 +309,7 @@ body {
     font-size: 13px;
 }
 
-#msform input:focus, #msform textarea:focus {
+#msform input:focus, #msform textarea:focus, #stepContainer input:focus, #stepContainer textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -313,7 +323,7 @@ body {
 
 /*buttons*/
 
-#msform .action-button-previous {
+#msform .action-button-previous, #stepContainer .action-button-previous {
     width: 100px;
     color: #333;
     border: 0 none;
@@ -323,7 +333,7 @@ body {
     margin: 10px 5px;
 }
 
-#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+#msform .action-button-previous:hover, #msform .action-button-previous:focus, #stepContainer .action-button-previous:hover, #stepContainer .action-button-previous:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
 }
 
@@ -356,7 +366,7 @@ body {
     list-style-type: none;
     text-transform: uppercase;
     font-size: 9px;
-    width: 16%;
+    width: 25%;
     float: left;
     position: relative;
     letter-spacing: 1px;
@@ -530,4 +540,40 @@ body {
     margin-bottom: 0px!important;
     text-align: left;
     color: #6c757d !important;
+}
+
+/*CUSTOM STEP WIZARD*/
+#stepContainer {
+    width: 100%;
+}
+#stepContainer .stepWizard:not(:first-of-type) {
+    display: none;
+}
+.btn-start {
+    height: 2.7em;
+    width: 100%;
+    border-radius: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+/*CUSTOM BS*/
+.nav-tabs .nav-link.active {
+    color: #ff6700;
+}
+.nav-tabs .nav-link {
+    color: #212529;
+}
+.btn-selPerizinan {
+    border: 1px #ddd solid;
+    color: #6b6b6b;
+    height: 100%;
+    width: 100%;
+    display:flex;/*CSS3*/
+    align-items:center;/*Vertical align*/
+    justify-content:center;/*horizontal align*/
+}
+.btn-selPerizinan:hover {
+    background: linear-gradient(45deg, rgba(252,110,152,1) 0%, rgba(255,103,0,1) 68%, rgba(255,103,0,1) 100%);
+    color: #fff;
 }
