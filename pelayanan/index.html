@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Pelayanan Jakarta</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="assets/css/bootstrap.css" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -15,43 +17,77 @@
 <body class="bg-light">
 <div class="container go-register">
     <!-- Login Form Starts -->
-    <div class="form__container form__container-login">
+    <div class="form__container form__container-login bg-shattered">
         <div id="stepContainer">
             <div id="firstStep" class="stepWizard">
-                <div class="form__heading mb-5" style="line-height: 45px;"> Selamat datang di Pelayanan <span class="d-block font-weight-bold">DKI Jakarta </span></div>
-                <button type="button" class="btn btn--main btn-start nexts">BUAT PERIZINAN</button>
+                <div class="form__heading mb-3" style="line-height: 45px;"> Selamat datang di Pelayanan <span class="d-block font-weight-bold fs-40px">DKI Jakarta </span></div>
+
+                <button type="button" class="btn btn--main btn-start mr-1 nexts">BUAT IZIN BARU</button>
+                <button type="button" class="btn btn--second btn-start checkPermi">CEK PROSES IZIN</button>
             </div>
 
             <div id="secondStep" class="stepWizard">
-                <h3 class="form__heading mb-0"> PETA LOKASI </h3>
-                <p class="form__text text-muted">Pilih lokasi lahan anda pada peta</p>
-                <div id="maps" style="height: 400px;"></div>
+                <h3 class="form__heading mb-0"> PILIH TUJUAN IZIN </h3>
+                <p class="form__text text-muted">Tentukan izin yang ingin anda buat</p>
+
+                <button type="button" class="btn btn--selects nexts" data-toggle="tooltip" data-placement="top" title="Untuk mengembangkan kawasan kawasan industri di daerah jakarta">Mengembangkan Kawasan</button>
+                <button type="button" class="btn btn--selects" data-toggle="tooltip" data-placement="top" title="Untuk membangun bangunan gedung di sekitaran jakarta" disabled>Membangun Gedung/Bangunan</button>
+                <button type="button" class="btn btn--selects" data-toggle="tooltip" data-placement="top" title="Untuk membangun sarana infrastruktur pada daerah jakarta" disabled>Membangun Prasarana/Infrastruktur</button>
+                <button type="button" class="btn btn--selects" data-toggle="tooltip" data-placement="top" title="Melakukan kegiatan sosial di daerah jakarta" disabled>Berusaha/beraktivitas/ berkegiatan/operasional</button>
+                <button type="button" class="btn btn--selects" data-toggle="tooltip" data-placement="top" title="Untuk membuat kantor administrasi kependudukan di daerah jakarta" disabled>Administrasi Keprofesian/ kependudukan</button>
                 <br>
-                <button type="button" class="btn rounded-0 btn--main nexts">Selanjutnya</button>
+
+                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
             </div>
+
+<!--            <div id="secondStep" class="stepWizard">-->
+<!--                <h3 class="form__heading mb-0"> PETA LOKASI </h3>-->
+<!--                <p class="form__text text-muted">Pilih lokasi lahan anda pada peta</p>-->
+<!--                <div id="maps" style="height: 400px;"></div>-->
+<!--                <br>-->
+<!--                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>-->
+<!--                <button type="button" class="btn rounded-0 btn&#45;&#45;main nexts">Selanjutnya</button>-->
+<!--            </div>-->
 
             <div id="thirdStep" class="stepWizard">
                 <h3 class="form__heading mb-5"> Untuk apa kebutuhan perizinan anda? </h3>
-                <button type="button" class="btn btn--sectionstep btn--second mr-1 self">PERSEORANGAN</button>
-                <button type="button" class="btn btn--sectionstep btn--main company">PERUSAHAAN</button>
+                <button type="button" class="btn btn--selects nexts">PERSEORANGAN</button>
+                <button type="button" class="btn btn--selects company" disabled>PERUSAHAAN</button>
+                <button type="button" class="btn btn--selects government" disabled>PEMERINTAHAN/BUMD/BUMN</button>
             </div>
 
             <div id="fourthStep" class="stepWizard">
-                <h3 class="form__heading mb-0"> Masukan Nomor Registrasi Bangunan </h3>
-                <p class="form__text text-muted">Lihat nomor tersebut pada berkas anda</p>
-                <input type="text" autocomplete="off" placeholder="Nomor Registrasi Bangunan" class="form__field" id="noRegBang" name="noRegBang" style="height: 50px">
+                <h3 class="form__heading mb-0">Lengkapi Data Permohonan</h3>
+                <p class="form__text text-muted">Isi formulir dengan benar dan lengkap.</p>
 
-                <ul class="dropdown-search noregResult">
+                <input type="text" placeholder="Nama Pemohon" class="form__field" name="nameReq" id="nameReq" style="height: 40px">
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="Nomor NPWP / NIK" class="form__field npwpI" name="npwpF" id="npwpF" style="height: 40px">
+                <input type="number" placeholder="Nomor Telepon Aktif" class="form__field phoneI" name="phoneF" id="phoneF" style="height: 40px">
+                <input type="email" placeholder="Alamat Email Aktif" class="form__field emailI" name="emailF" id="emailF" style="height: 40px">
 
-                </ul>
+                <p class="form__text mb-2">Mengurus sendiri atau tidak?</p>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <div class="radioBtn btn-group w-100">
+                                    <a class="btn btn-pelayanan active" data-toggle="happy" data-title="Y">YA, Sendiri</a>
+                                    <a class="btn btn-pelayanan notActive" data-toggle="happy" data-title="N">TIDAK</a>
+                                </div>
+                                <input type="hidden" name="happy" class="happy" id="sel1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
-                <button type="button" name="next" class="btn rounded-0 btn--main btn-noreg noRegNext" disabled>Selanjutnya</button>
+                <button type="button" name="next" class="btn rounded-0 btn--main btn-noreg" id="btnDaftarIzin">Selanjutnya</button>
             </div>
 
             <div id="fifthStep" class="stepWizard">
                 <h3 class="form__heading mb-5"> Apakah termasuk lahan kosong? </h3>
-                <button type="button" class="btn btn--sectionstep btn--second mr-1 nexts">YA, Lahan Kosong</button>
-                <button type="button" class="btn btn--sectionstep btn--main notemptyLand">TIDAK</button>
+                <button type="button" class="btn btn--selects btn--second mr-1 nexts">YA, Lahan Kosong</button>
+                <button type="button" class="btn btn--selects btn--main notemptyLand">TIDAK</button>
             </div>
 
             <div id="sixthStep" class="stepWizard">
@@ -66,175 +102,190 @@
                 <button type="button" name="next" class="btn rounded-0 btn--main btn-noreg nexts">Selanjutnya</button>
             </div>
 
+            <!--            SIDE STEP-->
+            <div id="checkPermission" class="stepWizard">
+                <h3 class="form__heading mb-0"> Masukan Nomor Token Anda </h3>
+                <p class="form__text text-muted">Nomor Token dapat di lihat pada berkas pendaftaran dari DPMPTSP</p>
+
+                <input type="text" autocomplete="off" placeholder="Nomor Token Pendaftaran" class="form__field" id="checkNoToken" name="checkNoToken" style="height: 50px">
+                <ul class="dropdown-search noinResult">
+
+                </ul>
+
+                <input type="button" name="previous" class="previous-check action-button-previous" value="Kembali"/>
+                <button type="button" name="next" class="btn rounded-0 btn--main">Lanjutkan</button>
+            </div>
+            <!--            SIDE STEP-->
+
             <div id="lastStep" class="stepWizard">
-                <form id="msform">
-                    <!-- progressbar -->
-                    <ul id="progressbar">
-                        <li class="active">Pengarahan</li>
-                        <li>Data <span class="d-block">Administrasi</span></li>
-                        <li>Data Teknis</li>
-                        <li>Selesai <span class="d-block text-muted">(Resume)</span></li>
-                    </ul>
-                    <!-- fieldsets -->
-                    <fieldset>
-                        <h3 class="form__heading"> PERIZINAN <span class="text-danger">*</span> </h3>
+                <!--                <form id="msform">-->
+                <!--                    &lt;!&ndash; progressbar &ndash;&gt;-->
+                <!--                    <ul id="progressbar">-->
+                <!--                        <li class="active">Pengarahan</li>-->
+                <!--                        <li>Data <span class="d-block">Administrasi</span></li>-->
+                <!--                        <li>Data Teknis</li>-->
+                <!--                        <li>Selesai <span class="d-block text-muted">(Resume)</span></li>-->
+                <!--                    </ul>-->
+                <!--                    &lt;!&ndash; fieldsets &ndash;&gt;-->
+                <!--                    <fieldset>-->
+                <!--                        <h3 class="form__heading"> PERIZINAN <span class="text-danger">*</span> </h3>-->
 
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">PEMBANGUNAN</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">KEGIATAN BADAN USAHA</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">KETATARUANGAN</a>
-                            </li>
-                        </ul>
-                        <div class="tab-content p-2" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <button href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Mendirikan Bangunan</button>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Membangun Prasarana</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Bongkar Bangunan</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Penyenggaraan Reklame</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Pemasukan Daging</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Pool</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Perkemahan</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Usaha Toko</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">KLB</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Rekomendasi Zona Merah</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Pengesahan Gambar Perencanaan</a>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Rencana Kota Besar</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <!--                        <ul class="nav nav-tabs" id="myTab" role="tablist">-->
+                <!--                            <li class="nav-item">-->
+                <!--                                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">PEMBANGUNAN</a>-->
+                <!--                            </li>-->
+                <!--                            <li class="nav-item">-->
+                <!--                                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">KEGIATAN BADAN USAHA</a>-->
+                <!--                            </li>-->
+                <!--                            <li class="nav-item">-->
+                <!--                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">KETATARUANGAN</a>-->
+                <!--                            </li>-->
+                <!--                        </ul>-->
+                <!--                        <div class="tab-content p-2" id="pills-tabContent">-->
+                <!--                            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">-->
+                <!--                                <div class="row">-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <button href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Mendirikan Bangunan</button>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Membangun Prasarana</a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Bongkar Bangunan</a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Penyenggaraan Reklame</a>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">-->
+                <!--                                <div class="row">-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Pemasukan Daging</a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Pool</a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Perkemahan</a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Izin Usaha Toko</a>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">-->
+                <!--                                <div class="row">-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">KLB</a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Rekomendasi Zona Merah</a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Pengesahan Gambar Perencanaan</a>-->
+                <!--                                    </div>-->
+                <!--                                    <div class="col-md-3">-->
+                <!--                                        <a href="https://pelayanan.jakarta.go.id/site/perizinan" target="_blank" class="btn btn-selPerizinan">Rencana Kota Besar</a>-->
+                <!--                                    </div>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
 
-                        <!--                <div class="col-md-12 mb-3">-->
-                        <!--                    <div class="border p-3">-->
-                        <!--                        <span class="h5">REKOMENDASI</span>-->
-                        <!--                        <span class="d-block h2">IMB "A"</span>-->
-                        <!--                        <hr>-->
-                        <!--                        <h5 style="text-align: left;">Fotokopi SIPPT/IPPR yang masih berlaku, jika :</h5>-->
-                        <!--                        <ol style="padding: 18px;text-align: left;">-->
-                        <!--                            <li>Luas tanah ≥ 5.000 m2;</li>-->
-                        <!--                            <li>Tanah bukan milik Pemerintah Provinsi DKI Jakarta;</li>-->
-                        <!--                            <li>Tanah bukan milik BUMD Provinsi DKI Jakarta yang tidak dikerjasamakan dengan pihak swasta dan Ketentuan pengecualian lainnya;</li>-->
-                        <!--                        </ol>-->
-                        <!--                    </div>-->
-                        <!--                </div>-->
-                        <br>
-                        <!--                        <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>-->
-                        <button type="button" name="next" id="btnDaftarAdm" class="btn rounded-0 btn--main next">Selanjutnya</button>
-                    </fieldset>
+                <!--                        &lt;!&ndash;                <div class="col-md-12 mb-3">&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                    <div class="border p-3">&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                        <span class="h5">REKOMENDASI</span>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                        <span class="d-block h2">IMB "A"</span>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                        <hr>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                        <h5 style="text-align: left;">Fotokopi SIPPT/IPPR yang masih berlaku, jika :</h5>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                        <ol style="padding: 18px;text-align: left;">&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                            <li>Luas tanah ≥ 5.000 m2;</li>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                            <li>Tanah bukan milik Pemerintah Provinsi DKI Jakarta;</li>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                            <li>Tanah bukan milik BUMD Provinsi DKI Jakarta yang tidak dikerjasamakan dengan pihak swasta dan Ketentuan pengecualian lainnya;</li>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                        </ol>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                    </div>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                </div>&ndash;&gt;-->
+                <!--                        <br>-->
+                <!--                        &lt;!&ndash;                        <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>&ndash;&gt;-->
+                <!--                        <button type="button" name="next" id="btnDaftarAdm" class="btn rounded-0 btn&#45;&#45;main next">Selanjutnya</button>-->
+                <!--                    </fieldset>-->
 
-                    <fieldset>
-                        <h3 class="form__heading"> DATA ADMINISTRASI <span class="text-danger">*</span> </h3>
-                        <p class="form__text text-muted">Masukan nomor NPWP anda</p>
-                        <input autocomplete="off" aria-label="Search" type="search" placeholder="Nomor NPWP" class="form__field mb-0 npwpI" name="npwpF" id="npwpF" style="height: 40px">
-                        <ul class="dropdown-search npwpResult">
+                <!--                    <fieldset>-->
+                <!--                        <h3 class="form__heading"> DATA ADMINISTRASI <span class="text-danger">*</span> </h3>-->
+                <!--                        <p class="form__text text-muted">Masukan nomor NPWP anda</p>-->
+                <!--                        <input autocomplete="off" aria-label="Search" type="search" placeholder="Nomor NPWP" class="form__field mb-0 npwpI" name="npwpF" id="npwpF" style="height: 40px">-->
+                <!--                        <ul class="dropdown-search npwpResult">-->
 
-                        </ul>
-                        <hr>
-                        <span class="text-muted">Optional</span>
-                        <input type="email" placeholder="Alamat Email Aktif" class="form__field emailI" name="emailF" id="emailF" style="height: 40px">
-                        <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
-                        <button type="button" name="next" class="btn rounded-0 btn--main btn-npwp next" disabled>Selanjutnya</button>
-                    </fieldset>
+                <!--                        </ul>-->
+                <!--                        <hr>-->
+                <!--                        <span class="text-muted">Optional</span>-->
+                <!--                        <input type="email" placeholder="Alamat Email Aktif" class="form__field emailI" name="emailF" id="emailF" style="height: 40px">-->
+                <!--                        <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>-->
+                <!--                        <button type="button" name="next" class="btn rounded-0 btn&#45;&#45;main btn-npwp next" disabled>Selanjutnya</button>-->
+                <!--                    </fieldset>-->
 
-                    <fieldset>
-                        <h3 class="form__heading"> DATA TEKNIS <span class="text-danger">*</span> </h3>
-                        <p class="form__text text-muted">Isikan formulir berikut untuk keperluan lebih lanjut</p>
-                        <div class="custom-file mb-2">
-                            <input type="file" class="custom-file-input" id="customFile1">
-                            <label class="custom-file-label" for="customFile1">Sertifikat Lahan</label>
-                        </div>
-                        <div class="custom-file mb-2">
-                            <input type="file" class="custom-file-input" id="customFile2">
-                            <label class="custom-file-label" for="customFile2">File AutoCAD Bangunan</label>
-                        </div>
-                        <div class="form-group">
-                            <select class="selectpicker form-control" id="konsultan1" data-live-search="true">
-                                <option>- Konsultan Perencanaan -</option>
-                                <option>PT PBU</option>
-                                <option>PT TELKOM</option>
-                                <option>PT ESIA</option>
-                            </select>
-                        </div>
-                        <hr>
-                        <span class="text-muted">Optional</span>
-                        <div class="form-group">
-                            <select class="selectpicker form-control" id="konsultan2" data-live-search="true">
-                                <option>- Konsultan Perizinan -</option>
-                                <option>PT PBU</option>
-                                <option>PT TELKOM</option>
-                                <option>PT ESIA</option>
-                            </select>
-                        </div>
-                        <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
-                        <button type="button" name="next" id="btnDaftarIzin" class="btn rounded-0 btn--main next">Selanjutnya</button>
-                    </fieldset>
+                <!--                    <fieldset>-->
+                <!--                        <h3 class="form__heading"> DATA TEKNIS <span class="text-danger">*</span> </h3>-->
+                <!--                        <p class="form__text text-muted">Isikan formulir berikut untuk keperluan lebih lanjut</p>-->
+                <!--                        <div class="custom-file mb-2">-->
+                <!--                            <input type="file" class="custom-file-input" id="customFile1">-->
+                <!--                            <label class="custom-file-label" for="customFile1">Sertifikat Lahan</label>-->
+                <!--                        </div>-->
+                <!--                        <div class="custom-file mb-2">-->
+                <!--                            <input type="file" class="custom-file-input" id="customFile2">-->
+                <!--                            <label class="custom-file-label" for="customFile2">File AutoCAD Bangunan</label>-->
+                <!--                        </div>-->
+                <!--                        <div class="form-group">-->
+                <!--                            <select class="selectpicker form-control" id="konsultan1" data-live-search="true">-->
+                <!--                                <option>- Konsultan Perencanaan -</option>-->
+                <!--                                <option>PT PBU</option>-->
+                <!--                                <option>PT TELKOM</option>-->
+                <!--                                <option>PT ESIA</option>-->
+                <!--                            </select>-->
+                <!--                        </div>-->
+                <!--                        <hr>-->
+                <!--                        <span class="text-muted">Optional</span>-->
+                <!--                        <div class="form-group">-->
+                <!--                            <select class="selectpicker form-control" id="konsultan2" data-live-search="true">-->
+                <!--                                <option>- Konsultan Perizinan -</option>-->
+                <!--                                <option>PT PBU</option>-->
+                <!--                                <option>PT TELKOM</option>-->
+                <!--                                <option>PT ESIA</option>-->
+                <!--                            </select>-->
+                <!--                        </div>-->
+                <!--                        <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>-->
+                <!--                        <button type="button" name="next" id="btnDaftarIzin" class="btn rounded-0 btn&#45;&#45;main next">Selanjutnya</button>-->
+                <!--                    </fieldset>-->
 
-                    <fieldset>
-                        <!--                <i class="mdi mdi-check-circle mdi-48px" style="color: #ff6704;"></i>-->
-                        <!--                <h3 class="form__heading"> RESUME </h3>-->
-                        <!--                <p class="form__text text-muted">Mohon menunggu maksimal 20 Hari kerja untuk proses verifikasi pendataan bangunan anda. Notifikasi akan dikirimkan ke Email anda.</p>-->
-                        <div class="col-md-12 mb-3">
-                            <div class="border p-3 text-left">
-                                <span class="h5 border-bottom">DATA PEMOHON</span>
-                                <div class="mt-2">
-                                    <span class="">No. Permohonan : 998324783467326</span>
-                                    <span class=" float-right">Log Book : fgt6w7fg333e2trf4</span>
-                                </div>
-                                <hr>
-                                <span class="h5 border-bottom">DATA ADMINISTRASI</span>
-                                <div class="mt-2">
-                                    <span class="">Detail Bangunan : #######</span>
-                                    <span class=" float-right">Tanah : #######</span>
-                                </div>
-                                <hr>
-                                <span class="h5 border-bottom">DATA TEKNIS</span>
-                                <div class="mt-2">
-                                    <span class="">Ukuran Bangunan : #######</span>
-                                    <span class=" float-right">Rekomendasi : #######</span>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
-                        <button type="button" name="submit" class="btn rounded-0 btn--main submit">Kirim Data</button>
-                    </fieldset>
-                </form>
+                <!--                    <fieldset>-->
+                <!--                        &lt;!&ndash;                <i class="mdi mdi-check-circle mdi-48px" style="color: #ff6704;"></i>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                <h3 class="form__heading"> RESUME </h3>&ndash;&gt;-->
+                <!--                        &lt;!&ndash;                <p class="form__text text-muted">Mohon menunggu maksimal 20 Hari kerja untuk proses verifikasi pendataan bangunan anda. Notifikasi akan dikirimkan ke Email anda.</p>&ndash;&gt;-->
+                <!--                        <div class="col-md-12 mb-3">-->
+                <!--                            <div class="border p-3 text-left">-->
+                <!--                                <span class="h5 border-bottom">DATA PEMOHON</span>-->
+                <!--                                <div class="mt-2">-->
+                <!--                                    <span class="">No. Permohonan : 998324783467326</span>-->
+                <!--                                    <span class=" float-right">Log Book : fgt6w7fg333e2trf4</span>-->
+                <!--                                </div>-->
+                <!--                                <hr>-->
+                <!--                                <span class="h5 border-bottom">DATA ADMINISTRASI</span>-->
+                <!--                                <div class="mt-2">-->
+                <!--                                    <span class="">Detail Bangunan : #######</span>-->
+                <!--                                    <span class=" float-right">Tanah : #######</span>-->
+                <!--                                </div>-->
+                <!--                                <hr>-->
+                <!--                                <span class="h5 border-bottom">DATA TEKNIS</span>-->
+                <!--                                <div class="mt-2">-->
+                <!--                                    <span class="">Ukuran Bangunan : #######</span>-->
+                <!--                                    <span class=" float-right">Rekomendasi : #######</span>-->
+                <!--                                </div>-->
+                <!--                            </div>-->
+                <!--                        </div>-->
+                <!--                        <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>-->
+                <!--                        <button type="button" name="submit" class="btn rounded-0 btn&#45;&#45;main submit">Kirim Data</button>-->
+                <!--                    </fieldset>-->
+                <!--                </form>-->
             </div>
         </div>
 
