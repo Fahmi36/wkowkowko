@@ -95,7 +95,7 @@ class Users extends CI_Controller {
     public function sendMail()
     {
         try {
-            $token = $this->input->get('token');
+            $token = $this->input->post('token');
             if($token!=""){
 
                 $dPemohon = $this->cekPermohonan($token);
@@ -127,8 +127,8 @@ class Users extends CI_Controller {
                 $this->email->set_newline("\r\n");
                 $mesg = $this->load->view('pages/mailTpl', $data, true);
                 $this->email->to($emailpemohon);
-                $this->email->from('tester4pps@gmail.com', 'Telkomcel E-Topup');
-                $this->email->reply_to('tester4pps@gmail.com', 'Telkomcel E-Topup');
+                $this->email->from('tester4pps@gmail.com', 'Perizinan DKI');
+                $this->email->reply_to('tester4pps@gmail.com', 'Perizinan DKI');
                 
                 $this->email->subject('Invoices E-topup');
                 $this->email->message($mesg);
@@ -153,15 +153,22 @@ class Users extends CI_Controller {
     }
     
 
+    /**
+     * @method POST
+     * @param token VARCHAR (token)
+     * @param code VARCHAR (code)
+     * This Function is for verified the code
+     */
     public function prosesVerifikasi()
     {
         try{
             $code = $this->input->post('code');
             $token = $this->input->post('token');
             if($code=="" OR $token==""){
-                $result = $this->returnResultCustom("Oops, missing parameter");
+                $result = $this->returnResultCustom(false,"Oops, missing parameter");
             }else{
                 $data = $this->um->prosesVerified($code,$token);
+                $this->um->updateprosesVerified($code,$token);
                 $result = $this->returnResult($data);
             }
             echo json_encode($result);
@@ -196,7 +203,7 @@ class Users extends CI_Controller {
         );
     }
 
-    function incrementalHash($len = 5){
+    function incrementalHash($len = 6){
         $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         $base = strlen($charset);
         $result = '';
@@ -207,7 +214,7 @@ class Users extends CI_Controller {
           $result = $charset[$i] . $result;
           $now /= $base;
         }
-        return substr($result, -5);
-      }
+        return substr($result, -6);
+    }
 
 }

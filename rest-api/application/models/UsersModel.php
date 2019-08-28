@@ -30,4 +30,12 @@ class UsersModel extends CI_Model
         $q = $this->db->get('permohonan');
         return $q;
     }
+
+    function updateprosesVerified($code,$token)
+    {
+        $this->db->where('code',$code);
+        $this->db->where('token',$token);
+        $q = $this->db->update('permohonan',array('last_check'=>date('Y-m-d H:i:s')));
+        return $q;
+    }
 }
