@@ -73,7 +73,7 @@ class Users extends CI_Controller {
                 $data = $this->um->cekPermohonan($token);
                 $res = $this->returnResult($data);
             }else{
-                $res = $this->returnResultCustom("Oops, missing parameter");
+                $res = $this->returnResultCustom(false,"Oops, missing parameter");
             }
 
             if($tokenGet!=null){
@@ -89,53 +89,60 @@ class Users extends CI_Controller {
 
     /**
      * @method POST
-     * @param email VARCHAR (email)
+     * @param token VARCHAR (token)
      * This Function is for sending mail
      */
     public function sendMail()
     {
         try {
-            $token = $this->input->get('token');
-            $dPemohon = $this->cekPermohonan($token);
-            $decoder = json_decode($dPemohon);
-            $decodeData = $decoder->row[0];
-            $emailpemohon = $decodeData->email;
+            $token = $this->input->post('token');
+            if($token!=""){
 
-            $data = array();
-            $data['title'] = "Verifikasi Kode";
-            $data['type'] = "verifikasikode";
-            $data['nomor_token'] = $decodeData->token;
-            $data['nama_pemohon'] = $decodeData->nama_pemohon;
-            $config = array(
-                'useragent' => 'Etopup',
-                'protocol'  => 'smtp',
-                'smtp_host' => 'ssl://smtp.gmail.com',
-                'smtp_port' => 465,
-                'smtp_user' => 'tester4pps@gmail.com',
-                'smtp_pass' => '5exP1stol2105',
-                'mailtype'  => 'html',
-                'wordwrap'  => TRUE,
-                'charset'   => 'utf-8',
-                'priority'  => 1
-            );
-            $this->load->library('email', $config);
-            $this->email->initialize($config);
-            $this->email->set_mailtype("html");
-            $this->email->set_newline("\r\n");
-            $mesg = $this->load->view('pages/mailTpl', $data, true);
-
-            $this->email->to($emailpemohon);
-            $this->email->from('tester4pps@gmail.com', 'Telkomcel E-Topup');
-            $this->email->reply_to('tester4pps@gmail.com', 'Telkomcel E-Topup');
-            
-            $this->email->subject('Invoices E-topup');
-            $this->email->message($mesg);
-            // $this->email->attach('./uploads/pdf/' . $namaPdf . '.pdf');
-            $email = $this->email->send();
-        
-            if(!$email){
-                show_error($this->email->print_debugger());
+                $dPemohon = $this->cekPermohonan($token);
+                $decoder = json_decode($dPemohon);
+                $decodeData = $decoder->row[0];
+                $emailpemohon = $decodeData->email;
+                $data = array();
+                $data['title'] = "Verifikasi Kode";
+                $data['type'] = "verifikasikode";
+                $data['generatedCode'] = "asdas";
+                $data['nomor_token'] = $decodeData->token;
+                $data['nama_pemohon'] = $decodeData->nama_pemohon;
+                $config = array(
+                    'protocol'  => 'smtp',
+                    'smtp_host' => 'smtp.gmail.com',
+                    'smtp_port' => 465,
+                    'smtp_user' => 'tester4pps@gmail.com',
+                    'smtp_pass' => '5exP1stol2105',
+                    'mailtype'  => 'html',
+                    'wordwrap'  => TRUE,
+                    'charset'   => 'utf-8',
+                    'priority'  => 1
+                );
+                $this->email->initialize($config);
+                
+                $this->email->set_mailtype("html");
+                $this->email->set_newline("\r\n");
+                $mesg = $this->load->view('pages/mailTpl', $data, true);
+                $this->email->to($emailpemohon);
+                $this->email->from('tester4pps@gmail.com', 'Telkomcel E-Topup');
+                $this->email->reply_to('tester4pps@gmail.com', 'Telkomcel E-Topup');
+                
+                $this->email->subject('Invoices E-topup');
+                $this->email->message($mesg);
+                // $this->email->attach('./uploads/pdf/' . $namaPdf . '.pdf');
+                // $email = $this->email->send();
+                if ($this->email->send()) {
+                    $result = $this->returnResultCustom(true,'Success send mail');
+                } else {
+                    $result = $this->returnResultCustom(false,'Failed to send mail');
+                    // show_error($this->email->print_debugger());
+                }
+            }else{
+                $result = $this->returnResultCustom(false,'Oops, missing parameter');
             }
+            echo json_encode($result);
+
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -159,10 +166,10 @@ class Users extends CI_Controller {
                     'msg'=>'Failed fetch data from database'
                 );
     }
-    function returnResultCustom($msg)
+    function returnResultCustom($t,$msg)
     {
         return array(
-            'success'=>false,
+            'success'=>$t,
             'msg'=>$msg
         );
     }
