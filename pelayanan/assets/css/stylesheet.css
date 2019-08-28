@@ -542,7 +542,7 @@ body {
 .checking-detail_item_label {
     color: #063f4f;
     font-size: .875rem;
-    width: 6.25rem;
+    /*width: 6.25rem;*/
     text-align: left;
 }
 .checking-detail_item_div {

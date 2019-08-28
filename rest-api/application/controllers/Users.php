@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Sony Surahman
- * 
+ *
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -30,7 +30,7 @@ class Users extends CI_Controller {
         header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
         header('Access-Control-Max-Age: 1000');
         header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
-        
+
         $this->load->model('UsersModel', 'um');
     }
 
@@ -122,7 +122,7 @@ class Users extends CI_Controller {
                     'priority'  => 1
                 );
                 $this->email->initialize($config);
-                
+
                 $this->email->set_mailtype("html");
                 $this->email->set_newline("\r\n");
                 $mesg = $this->load->view('pages/mailTpl', $data, true);
@@ -151,7 +151,7 @@ class Users extends CI_Controller {
             throw $th;
         }
     }
-    
+
 
     /**
      * @method POST
@@ -207,7 +207,7 @@ class Users extends CI_Controller {
         $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         $base = strlen($charset);
         $result = '';
-      
+
         $now = explode(' ', microtime())[1];
         while ($now >= $base){
           $i = $now % $base;
