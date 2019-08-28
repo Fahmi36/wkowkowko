@@ -59,7 +59,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td><h2 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:#ff6704;font-size:24px;line-height:1.8"><?=@$generatedCode?>ADAKJS</h2></td>
+								<td><h2 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:#ff6704;font-size:24px;line-height:1.8"><?=@$generatedCode?></h2></td>
 							</tr>
 						</table>
 						<?php } ?>

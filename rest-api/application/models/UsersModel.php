@@ -22,4 +22,12 @@ class UsersModel extends CI_Model
         $q = $this->db->get('permohonan per');
         return $q;
     }
+    
+    function prosesVerified($code,$token)
+    {
+        $this->db->where('code',$code);
+        $this->db->where('token',$token);
+        $q = $this->db->get('permohonan');
+        return $q;
+    }
 }

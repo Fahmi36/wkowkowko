@@ -95,22 +95,24 @@ class Users extends CI_Controller {
     public function sendMail()
     {
         try {
-            $token = $this->input->post('token');
+            $token = $this->input->get('token');
             if($token!=""){
 
                 $dPemohon = $this->cekPermohonan($token);
                 $decoder = json_decode($dPemohon);
                 $decodeData = $decoder->row[0];
                 $emailpemohon = $decodeData->email;
+                $tokenpemohon = $decodeData->token;
+                $generatedCode = $this->incrementalHash();
                 $data = array();
                 $data['title'] = "Verifikasi Kode";
                 $data['type'] = "verifikasikode";
-                $data['generatedCode'] = "asdas";
-                $data['nomor_token'] = $decodeData->token;
+                $data['generatedCode'] = $generatedCode;
+                $data['nomor_token'] = $tokenpemohon;
                 $data['nama_pemohon'] = $decodeData->nama_pemohon;
                 $config = array(
                     'protocol'  => 'smtp',
-                    'smtp_host' => 'smtp.gmail.com',
+                    'smtp_host' => 'ssl://smtp.gmail.com',
                     'smtp_port' => 465,
                     'smtp_user' => 'tester4pps@gmail.com',
                     'smtp_pass' => '5exP1stol2105',
@@ -134,6 +136,8 @@ class Users extends CI_Controller {
                 // $email = $this->email->send();
                 if ($this->email->send()) {
                     $result = $this->returnResultCustom(true,'Success send mail');
+                    //Update DB Permohonan
+                    $this->db->query("UPDATE permohonan SET code='$generatedCode' WHERE token='$tokenpemohon'");
                 } else {
                     $result = $this->returnResultCustom(false,'Failed to send mail');
                     // show_error($this->email->print_debugger());
@@ -143,6 +147,24 @@ class Users extends CI_Controller {
             }
             echo json_encode($result);
 
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
+    
+
+    public function prosesVerifikasi()
+    {
+        try{
+            $code = $this->input->post('code');
+            $token = $this->input->post('token');
+            if($code=="" OR $token==""){
+                $result = $this->returnResultCustom("Oops, missing parameter");
+            }else{
+                $data = $this->um->prosesVerified($code,$token);
+                $result = $this->returnResult($data);
+            }
+            echo json_encode($result);
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -173,5 +195,19 @@ class Users extends CI_Controller {
             'msg'=>$msg
         );
     }
+
+    function incrementalHash($len = 5){
+        $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        $base = strlen($charset);
+        $result = '';
+      
+        $now = explode(' ', microtime())[1];
+        while ($now >= $base){
+          $i = $now % $base;
+          $result = $charset[$i] . $result;
+          $now /= $base;
+        }
+        return substr($result, -5);
+      }
 
 }
