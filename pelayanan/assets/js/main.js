@@ -1,10 +1,13 @@
+var api_url = 'http://192.168.100.2/wkowkowko/rest-api/',
+    full_base_name = 'http://localhost/wkowkowko/';
+
 //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
 
     $(document).on('keyup', '#npwpF', function (event) {
         var bak = $(this).val();
@@ -382,6 +385,74 @@ $(document).ready(function(){
         nonForm.show();
     });
     //CUSTOM NEXT STEP
+    $('#onCheckToken').on('click', function () {
+        var inputToken = $('#checkNoToken').val(),
+            npemohon = $('#applicantName'),
+            nident = $('#identityNumber'),
+            dircom = $('#dirCompany'),
+            npwpdir = $('#npwpDir'),
+            mail = $('#applicantEmail'),
+            phone = $('#applicantPhone'),
+            status = $('#applicantStat'),
+            submitted = $('#applicantSubmit');
+        $.ajax({
+            url: api_url + 'cek_permohonan?token='+inputToken,
+            type: 'GET',
+            dataType: 'json',
+            beforeSend:function() {
+                // loader;
+            },
+            success:function(data) {
+                if(data.success){
+                    if(data.rowCount == 1){
+                        localStorage.setItem("isiDataToken", JSON.stringify(data.row));
+
+                        nexts();
+
+                        npemohon.html(data.row[0].nama_pemohon);
+                        nident.html(data.row[0].no_identitas);
+                        dircom.html(data.row[0].dirut_perusahaan);
+                        npwpdir.html(data.row[0].npwp_dirut);
+                        mail.html(data.row[0].email);
+                        phone.html(data.row[0].no_telp);
+                        status.html(data.row[0].status_kepengurusan);
+                        submitted.html(data.row[0].create_date);
+
+                    }else{
+                        console.log('Tidak ada data.');
+                    }
+                }else{
+                    console.log('Sistem Error');
+                }
+            }
+        });
+    });
+    $('#btnCheckConfCode').on('click', function () {
+        var inputCode = $('#checkConfCode').val(),
+            currToken = JSON.parse(localStorage.getItem('isiDataToken'));
+
+        $.ajax({
+            url: api_url + 'users/prosesVerifikasi',
+            type: 'POST',
+            dataType: 'json',
+            data:{token: currToken[0].token, code:inputCode},
+            beforeSend:function() {
+                // loader;
+            },
+            success:function(data) {
+                if(data.success){
+                    if(data.rowCount == 1){
+                        console.log(data);
+                    }else{
+                        console.log('Tidak ada data.');
+                    }
+                }else{
+                    console.log('Sistem Error');
+                }
+            }
+        });
+    });
+
     $('.self').on('click', function () {
         if(animating) return false;
         animating = true;
@@ -638,42 +709,54 @@ function next() {
         easing: 'easeInOutBack'
     });
 }
-// function nexts() {
-//     if(animating) return false;
-//     animating = true;
-//
-//     // current_fs = $(".izins").parent();
-//     // next_fs = $(".izins").parent().next();
-//
-//     //activate next step on progressbar using the index of next_fs
-//     // $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
-//
-//     //show the next fieldset
-//     next_fs.show();
-//     //hide the current fieldset with style
-//     current_fs.animate({opacity: 0}, {
-//         step: function(now, mx) {
-//             //as the opacity of current_fs reduces to 0 - stored in "now"
-//             //1. scale current_fs down to 80%
-//             scale = 1 - (1 - now) * 0.2;
-//             //2. bring next_fs from the right(50%)
-//             left = (now * 50)+"%";
-//             //3. increase opacity of next_fs to 1 as it moves in
-//             opacity = 1 - now;
-//             current_fs.css({
-//                 'transform': 'scale('+scale+')',
-//                 // 'position': 'absolute',
-//                 'display' : 'none'
-//             });
-//             next_fs.css({'left': left, 'opacity': opacity});
-//         },
-//         duration: 800,
-//         complete: function(){
-//             current_fs.hide();
-//             animating = false;
-//         },
-//         //this comes from the custom easing plugin
-//         easing: 'easeInOutBack'
-//     });
-// }
+function nexts() {
+    var tokenData = JSON.parse(localStorage.getItem('isiDataToken'));
+    $.ajax({
+        url: 'http://localhost/wkowkowko/rest-api/users/sendMail',
+        type: 'POST',
+        data: {token:tokenData[0].token},
+        beforeSend:function() {
+            // console.log(data);
+        },
+        success:function(data) {
+            console.log(data)
+        }
+    });
+    // users/sendMail?token=123
+
+    if(animating) return false;
+    animating = true;
+
+    current_fs = $("#checkPermission");
+    next_fs = $("#checkResume");
+
+    //show the next fieldset
+    next_fs.show();
+    //hide the current fieldset with style
+    current_fs.animate({opacity: 0}, {
+        step: function(now, mx) {
+            //as the opacity of current_fs reduces to 0 - stored in "now"
+            //1. scale current_fs down to 80%
+            scale = 1 - (1 - now) * 0.2;
+            //2. bring next_fs from the right(50%)
+            left = (now * 50)+"%";
+            //3. increase opacity of next_fs to 1 as it moves in
+            opacity = 1 - now;
+            current_fs.css({
+                'transform': 'scale('+scale+')',
+                // 'position': 'absolute',
+                'display' : 'none'
+            });
+            next_fs.css({'left': left, 'opacity': opacity});
+        },
+        duration: 800,
+        complete: function(){
+            current_fs.hide();
+            animating = false;
+        },
+        //this comes from the custom easing plugin
+        easing: 'easeInOutBack'
+    });
+
+}
 
