@@ -13,6 +13,9 @@ body {
 .fs-40px {
     font-size: 40px!important;
 }
+.w-35 {
+    width: 35% !important;
+}
 
 .bg-pelayanan {
     background: #ff6704;
@@ -54,7 +57,7 @@ body {
     flex-direction: column;
     width: 65%;
     height: 100%;
-    padding: 25px;
+    padding: 0px 20px 20px 20px;
     text-align: center;
     background: #fff;
     transition: all 0.6s ease-in;
@@ -104,7 +107,7 @@ body {
 .form__heading {
     font-size: 40px;
     line-height: 45px;
-    color: #524f4f;
+    color: #063f4f;
     /*margin-bottom: 15px;*/
 }
 .form__field {
@@ -153,13 +156,13 @@ body {
     display: inline-block;
     margin-left: 5px;
     margin-right: 5px;
-    border: 1px solid #333;
+    border: 1px solid #063f4f;
     width: 30px;
     height: 30px;
     border-radius: 50%;
 }
 .list__inline .list__link {
-    color: #333;
+    color: #063f4f;
     text-decoration: none;
 }
 .list__inline .list__icon {
@@ -333,7 +336,7 @@ body {
 
 #msform .action-button-previous, #stepContainer .action-button-previous {
     width: 100px;
-    color: #333;
+    color: #063f4f;
     border: 0 none;
     /*border-radius: 25px;*/
     cursor: pointer;
@@ -525,6 +528,36 @@ body {
     font-weight: 600;
 }
 
+.checking-detail {
+    padding: 16px 16px 0 16px;
+}
+.checking-detail_item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 0.7rem;
+}
+.checking-detail_item_label {
+    color: #063f4f;
+    font-size: .875rem;
+    width: 6.25rem;
+    text-align: left;
+}
+.checking-detail_item_div {
+    height: .9375rem;
+    -ms-flex-align: center!important;
+    align-items: center!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    width: 100%;
+}
+.checking-detail_item_div_1 {
+    font-size: .875rem;
+    font-weight: 600;
+}
+
 /*UPLOAD*/
 .custom-file-input {
     cursor: pointer;
@@ -636,7 +669,7 @@ body {
 
 .bg-shattered::after {
     content: "";
-    background: url(../img/shattered.png);
+    background-image: url(../img/shattered.png);
     opacity: 0.5;
     top: 0;
     left: 0;
@@ -644,4 +677,8 @@ body {
     right: 0;
     position: absolute;
     z-index: -1;
+}
+.bg-an {
+    background-color: #ffcba3;
+    background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png");
 }

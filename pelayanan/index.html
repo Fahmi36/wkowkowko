@@ -17,7 +17,11 @@
 <body class="bg-light">
 <div class="container go-register">
     <!-- Login Form Starts -->
-    <div class="form__container form__container-login bg-shattered">
+    <div class="form__container form__container-login bg-an">
+        <div class="position-relative">
+            <img src="assets/img/logopemprov.png" class="img-fluid w-35">
+        </div>
+
         <div id="stepContainer">
             <div id="firstStep" class="stepWizard">
                 <div class="form__heading mb-3" style="line-height: 45px;"> Selamat datang di Pelayanan <span class="d-block font-weight-bold fs-40px">DKI Jakarta </span></div>
@@ -27,68 +31,82 @@
             </div>
 
             <div id="secondStep" class="stepWizard">
-                <h3 class="form__heading mb-0"> PILIH TUJUAN IZIN </h3>
+                <div class="form__heading mb-0"> PILIH TUJUAN IZIN </div>
                 <p class="form__text text-muted">Tentukan izin yang ingin anda buat</p>
 
                 <button type="button" class="btn btn--selects nexts" data-toggle="tooltip" data-placement="top" title="Untuk mengembangkan kawasan kawasan industri di daerah jakarta">Mengembangkan Kawasan</button>
-                <button type="button" class="btn btn--selects" data-toggle="tooltip" data-placement="top" title="Untuk membangun bangunan gedung di sekitaran jakarta" disabled>Membangun Gedung/Bangunan</button>
-                <button type="button" class="btn btn--selects" data-toggle="tooltip" data-placement="top" title="Untuk membangun sarana infrastruktur pada daerah jakarta" disabled>Membangun Prasarana/Infrastruktur</button>
-                <button type="button" class="btn btn--selects" data-toggle="tooltip" data-placement="top" title="Melakukan kegiatan sosial di daerah jakarta" disabled>Berusaha/beraktivitas/ berkegiatan/operasional</button>
-                <button type="button" class="btn btn--selects" data-toggle="tooltip" data-placement="top" title="Untuk membuat kantor administrasi kependudukan di daerah jakarta" disabled>Administrasi Keprofesian/ kependudukan</button>
+                <button type="button" class="btn btn--selects nexts" data-toggle="tooltip" data-placement="top" title="Untuk membangun bangunan gedung di sekitaran jakarta">Membangun Gedung/Bangunan</button>
+                <button type="button" class="btn btn--selects nexts" data-toggle="tooltip" data-placement="top" title="Untuk membangun sarana infrastruktur pada daerah jakarta">Membangun Prasarana/Infrastruktur</button>
+                <button type="button" class="btn btn--selects nexts" data-toggle="tooltip" data-placement="top" title="Melakukan kegiatan sosial di daerah jakarta">Berusaha/beraktivitas/ berkegiatan/operasional</button>
+                <button type="button" class="btn btn--selects nexts" data-toggle="tooltip" data-placement="top" title="Untuk membuat kantor administrasi kependudukan di daerah jakarta">Administrasi Keprofesian/ kependudukan</button>
                 <br>
 
                 <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
             </div>
 
-<!--            <div id="secondStep" class="stepWizard">-->
-<!--                <h3 class="form__heading mb-0"> PETA LOKASI </h3>-->
-<!--                <p class="form__text text-muted">Pilih lokasi lahan anda pada peta</p>-->
-<!--                <div id="maps" style="height: 400px;"></div>-->
-<!--                <br>-->
-<!--                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>-->
-<!--                <button type="button" class="btn rounded-0 btn&#45;&#45;main nexts">Selanjutnya</button>-->
-<!--            </div>-->
+            <!--            <div id="secondStep" class="stepWizard">-->
+            <!--                <h3 class="form__heading mb-0"> PETA LOKASI </h3>-->
+            <!--                <p class="form__text text-muted">Pilih lokasi lahan anda pada peta</p>-->
+            <!--                <div id="maps" style="height: 400px;"></div>-->
+            <!--                <br>-->
+            <!--                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>-->
+            <!--                <button type="button" class="btn rounded-0 btn&#45;&#45;main nexts">Selanjutnya</button>-->
+            <!--            </div>-->
 
             <div id="thirdStep" class="stepWizard">
-                <h3 class="form__heading mb-5"> Untuk apa kebutuhan perizinan anda? </h3>
-                <button type="button" class="btn btn--selects nexts">PERSEORANGAN</button>
-                <button type="button" class="btn btn--selects company" disabled>PERUSAHAAN</button>
-                <button type="button" class="btn btn--selects government" disabled>PEMERINTAHAN/BUMD/BUMN</button>
+                <div class="form__heading mb-3"> Untuk apa kebutuhan perizinan anda? </div>
+                <button type="button" class="btn btn--selects self">PERSEORANGAN</button>
+                <button type="button" class="btn btn--selects company">PERUSAHAAN</button>
+                <button type="button" class="btn btn--selects government">PEMERINTAHAN/BUMD/BUMN</button>
             </div>
 
             <div id="fourthStep" class="stepWizard">
                 <h3 class="form__heading mb-0">Lengkapi Data Permohonan</h3>
                 <p class="form__text text-muted">Isi formulir dengan benar dan lengkap.</p>
 
-                <input type="text" placeholder="Nama Pemohon" class="form__field" name="nameReq" id="nameReq" style="height: 40px">
-                <input autocomplete="off" aria-label="Search" type="search" placeholder="Nomor NPWP / NIK" class="form__field npwpI" name="npwpF" id="npwpF" style="height: 40px">
+                <input type="text" placeholder="Nama Pemohon" class="form__field selfForm" name="nameReq" id="nameReq" style="height: 40px">
+                <input type="text" placeholder="Nama Perusahaan Pemohon" class="form__field compForm" name="namecompReq" id="namecompReq" style="height: 40px">
+                <input type="text" placeholder="Nama Pemohon" class="form__field govForm" name="namegovReq" id="namegovReq" style="height: 40px">
+
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="Nomor NPWP / NIK" class="form__field npwpNik" name="npwpSelf" id="npwpSelf" style="height: 40px">
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="Nomor NPWP" class="form__field npwpI" name="npwpF" id="npwpF" style="height: 40px">
+                <input autocomplete="off" aria-label="Search" type="search" placeholder="Nomor Induk Pegawai" class="form__field nipGov" name="nipGov" id="nipGov" style="height: 40px">
+
                 <input type="number" placeholder="Nomor Telepon Aktif" class="form__field phoneI" name="phoneF" id="phoneF" style="height: 40px">
                 <input type="email" placeholder="Alamat Email Aktif" class="form__field emailI" name="emailF" id="emailF" style="height: 40px">
 
-                <p class="form__text mb-2">Mengurus sendiri atau tidak?</p>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="input-group">
-                                <div class="radioBtn btn-group w-100">
-                                    <a class="btn btn-pelayanan active" data-toggle="happy" data-title="Y">YA, Sendiri</a>
-                                    <a class="btn btn-pelayanan notActive" data-toggle="happy" data-title="N">TIDAK</a>
+
+                <!--                -->
+                <input type="text" placeholder="Izin Terkait KSD/PSN" class="form__field terkaitGov" name="terkaitGov" id="terkaitGov" style="height: 40px">
+                <!--                -->
+                <input type="text" placeholder="Nama Direktur Utama Perusahaan" class="form__field dirutComp" name="dirutComp" id="dirutComp" style="height: 40px">
+                <!--                -->
+                <div class="selectSelfComp">
+                    <p class="form__text mb-2">Mengurus sendiri atau tidak?</p>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <div class="radioBtn btn-group w-100">
+                                        <a class="btn btn-pelayanan active" data-toggle="happy" data-title="Y">YA, Sendiri</a>
+                                        <a class="btn btn-pelayanan notActive" data-toggle="happy" data-title="N">TIDAK</a>
+                                    </div>
+                                    <input type="hidden" name="happy" class="happy" id="sel1">
                                 </div>
-                                <input type="hidden" name="happy" class="happy" id="sel1">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <input type="button" name="previous" class="previous action-button-previous" value="Kembali"/>
+                <input type="button" name="previous" class="previous-sel action-button-previous" value="Kembali"/>
                 <button type="button" name="next" class="btn rounded-0 btn--main btn-noreg" id="btnDaftarIzin">Selanjutnya</button>
             </div>
 
-            <div id="fifthStep" class="stepWizard">
-                <h3 class="form__heading mb-5"> Apakah termasuk lahan kosong? </h3>
-                <button type="button" class="btn btn--selects btn--second mr-1 nexts">YA, Lahan Kosong</button>
-                <button type="button" class="btn btn--selects btn--main notemptyLand">TIDAK</button>
-            </div>
+            <!--            <div id="fifthStep" class="stepWizard">-->
+            <!--                <h3 class="form__heading mb-5"> Apakah termasuk lahan kosong? </h3>-->
+            <!--                <button type="button" class="btn btn&#45;&#45;selects btn&#45;&#45;second mr-1 nexts">YA, Lahan Kosong</button>-->
+            <!--                <button type="button" class="btn btn&#45;&#45;selects btn&#45;&#45;main notemptyLand">TIDAK</button>-->
+            <!--            </div>-->
 
             <div id="sixthStep" class="stepWizard">
                 <h3 class="form__heading mb-0"> Masukan Nomor Induk Bangunan </h3>
@@ -113,7 +131,58 @@
                 </ul>
 
                 <input type="button" name="previous" class="previous-check action-button-previous" value="Kembali"/>
-                <button type="button" name="next" class="btn rounded-0 btn--main">Lanjutkan</button>
+                <button type="button" name="next" class="btn rounded-0 btn--main nexts">Cek Data</button>
+            </div>
+
+            <div id="checkResume" class="stepWizard">
+                <h3 class="form__heading mb-2"> Berikut data pendaftaran anda </h3>
+                <ul class="list-group">
+                    <li class="list-group-item" style="background: #f4f8f7;">
+                        <div class="checking-detail">
+                            <div class="checking-detail_item">
+                                <div class="row w-100">
+                                    <div class="col-md-6 mb-1">
+                                        <label class="checking-detail_item_label float-left">Nama :</label>
+                                        <div class="checking-detail_item_div">
+                                            <span class="checking-detail_item_div_1">Sdr. Alfamidi Mart</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-1">
+                                        <label class="checking-detail_item_label float-left">Perusahaan :</label>
+                                        <div class="checking-detail_item_div">
+                                            <span class="checking-detail_item_div_1">PT SP</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-1">
+                                        <label class="checking-detail_item_label float-left">NIK :</label>
+                                        <div class="checking-detail_item_div">
+                                            <span class="checking-detail_item_div_1">089653967913</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-1">
+                                        <label class="checking-detail_item_label float-left">NIP :</label>
+                                        <div class="checking-detail_item_div">
+                                            <span class="checking-detail_item_div_1">B 3865 EKD</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <input type="button" name="previous" class="previous-check action-button-previous" value="Bukan"/>
+                <button type="button" name="next" class="btn rounded-0 btn--main nexts">Lanjutkan</button>
+            </div>
+
+            <div id="confCode" class="stepWizard">
+                <h3 class="form__heading mb-0"> Mohon Cek Email Anda </h3>
+                <p class="form__text text-muted">Kami mengirimkan kode unik melalui email terdaftar untuk konfirmasi pengecekan data.</p>
+
+                <input type="text" placeholder="Masukan Kode Unik" class="form__field" id="checkConfCode" name="checkConfCode" style="height: 50px">
+
+                <input type="button" name="previous" class="previous-check action-button-previous" value="Kembali"/>
+                <button type="button" name="next" class="btn rounded-0 btn--main" disabled>Lanjutkan</button>
             </div>
             <!--            SIDE STEP-->
 
