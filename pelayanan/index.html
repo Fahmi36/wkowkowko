@@ -126,12 +126,9 @@
                 <p class="form__text text-muted">Nomor Token dapat di lihat pada berkas pendaftaran dari DPMPTSP</p>
 
                 <input type="text" autocomplete="off" placeholder="Nomor Token Pendaftaran" class="form__field" id="checkNoToken" name="checkNoToken" style="height: 50px">
-                <ul class="dropdown-search noinResult">
-
-                </ul>
 
                 <input type="button" name="previous" class="previous-check action-button-previous" value="Kembali"/>
-                <button type="button" name="next" class="btn rounded-0 btn--main nexts">Cek Data</button>
+                <button type="button" name="next" class="btn rounded-0 btn--main" id="onCheckToken">Cek Data</button>
             </div>
 
             <div id="checkResume" class="stepWizard">
@@ -142,29 +139,53 @@
                             <div class="checking-detail_item">
                                 <div class="row w-100">
                                     <div class="col-md-6 mb-1">
-                                        <label class="checking-detail_item_label float-left">Nama :</label>
+                                        <label class="checking-detail_item_label float-left">Nama Pemohon :</label>
                                         <div class="checking-detail_item_div">
-                                            <span class="checking-detail_item_div_1">Sdr. Alfamidi Mart</span>
+                                            <span class="checking-detail_item_div_1" id="applicantName">-</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label class="checking-detail_item_label float-left">Perusahaan :</label>
+                                        <label class="checking-detail_item_label float-left">No. Identitas :</label>
                                         <div class="checking-detail_item_div">
-                                            <span class="checking-detail_item_div_1">PT SP</span>
+                                            <span class="checking-detail_item_div_1" id="identityNumber">-</span>
+                                        </div>
+                                    </div>
+<!--                                    <div class="col-md-6 mb-1">-->
+<!--                                        <label class="checking-detail_item_label float-left">Direktur Perusahaan :</label>-->
+<!--                                        <div class="checking-detail_item_div">-->
+<!--                                            <span class="checking-detail_item_div_1" id="dirCompany">-</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6 mb-1">-->
+<!--                                        <label class="checking-detail_item_label float-left">NPWP Direktur :</label>-->
+<!--                                        <div class="checking-detail_item_div">-->
+<!--                                            <span class="checking-detail_item_div_1" id="npwpDir">-</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+                                    <div class="col-md-6 mb-1">
+                                        <label class="checking-detail_item_label float-left">Email :</label>
+                                        <div class="checking-detail_item_div">
+                                            <span class="checking-detail_item_div_1" id="applicantEmail">-</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label class="checking-detail_item_label float-left">NIK :</label>
+                                        <label class="checking-detail_item_label float-left">Nomor Telepon :</label>
                                         <div class="checking-detail_item_div">
-                                            <span class="checking-detail_item_div_1">089653967913</span>
+                                            <span class="checking-detail_item_div_1" id="applicantPhone">-</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-1">
-                                        <label class="checking-detail_item_label float-left">NIP :</label>
+                                        <label class="checking-detail_item_label float-left">Status Pengajuan :</label>
                                         <div class="checking-detail_item_div">
-                                            <span class="checking-detail_item_div_1">B 3865 EKD</span>
+                                            <span class="checking-detail_item_div_1" id="applicantStat">-</span>
                                         </div>
                                     </div>
+<!--                                    <div class="col-md-6 mb-1">-->
+<!--                                        <label class="checking-detail_item_label float-left">Diajukan Pada :</label>-->
+<!--                                        <div class="checking-detail_item_div">-->
+<!--                                            <span class="checking-detail_item_div_1" id="applicantSubmit">-</span>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -182,7 +203,7 @@
                 <input type="text" placeholder="Masukan Kode Unik" class="form__field" id="checkConfCode" name="checkConfCode" style="height: 50px">
 
                 <input type="button" name="previous" class="previous-check action-button-previous" value="Kembali"/>
-                <button type="button" name="next" class="btn rounded-0 btn--main" disabled>Lanjutkan</button>
+                <button type="button" name="next" class="btn rounded-0 btn--main" id="btnCheckConfCode">Lanjutkan</button>
             </div>
             <!--            SIDE STEP-->
 
@@ -401,8 +422,8 @@
 <script src="assets/vendors/swal/sweetalert2.all.min.js"></script>
 <!-- Optional: include a polyfill for ES6 Promises for IE11 and Android browser -->
 <script src="assets/js/polyfill.min.js"></script>
-<script src="https://js.arcgis.com/4.8/"></script>
-<script src="assets/js/arcgis.js"></script>
+<!--<script src="https://js.arcgis.com/4.8/"></script>-->
+<!--<script src="assets/js/arcgis.js"></script>-->
 <script src="assets/js/main.js"></script>
 <script>
 </script>
