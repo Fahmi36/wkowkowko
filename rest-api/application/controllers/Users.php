@@ -103,7 +103,7 @@ class Users extends CI_Controller {
                 $decodeData = $decoder->row[0];
                 $emailpemohon = $decodeData->email;
                 $tokenpemohon = $decodeData->token;
-                $generatedCode = $this->incrementalHash();
+                $generatedCode = $this->randstr();
                 $data = array();
                 $data['title'] = "Verifikasi Kode";
                 $data['type'] = "verifikasikode";
@@ -203,7 +203,7 @@ class Users extends CI_Controller {
         );
     }
 
-    function incrementalHash($len = 6){
+    public function incrementalHash($len = 6){
         $charset = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
         $base = strlen($charset);
         $result = '';
@@ -214,7 +214,16 @@ class Users extends CI_Controller {
           $result = $charset[$i] . $result;
           $now /= $base;
         }
-        return substr($result, -6);
+        echo substr($result, -6);
+    }
+
+    function randstr ($len=6, $abc="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789") {
+        $letters = str_split($abc);
+        $str = "";
+        for ($i=0; $i<=$len; $i++) {
+            $str .= $letters[rand(0, count($letters)-1)];
+        };
+        return $str;
     }
 
 }
