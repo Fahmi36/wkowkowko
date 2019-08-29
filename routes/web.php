@@ -12,7 +12,7 @@
 */
 
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('/', function () {
+    Route::get('/oldversion', function () {
         return view('layouts.guest');
     });
 });
