@@ -100,50 +100,56 @@ class Users extends CI_Controller {
 
                 $dPemohon = $this->cekPermohonan($token);
                 $decoder = json_decode($dPemohon);
-                $decodeData = $decoder->row[0];
-                $emailpemohon = $decodeData->email;
-                $tokenpemohon = $decodeData->token;
-                $generatedCode = $this->randstr();
-                $data = array();
-                $data['title'] = "Verifikasi Kode";
-                $data['type'] = "verifikasikode";
-                $data['generatedCode'] = $generatedCode;
-                $data['nomor_token'] = $tokenpemohon;
-                $data['nama_pemohon'] = $decodeData->nama_pemohon;
-                $config = array(
-                    'protocol'  => 'smtp',
-                    'smtp_host' => 'ssl://smtp.gmail.com',
-                    'smtp_port' => 465,
-                    'smtp_user' => 'tester4pps@gmail.com',
-                    'smtp_pass' => '5exP1stol2105',
-                    'mailtype'  => 'html',
-                    'wordwrap'  => TRUE,
-                    'charset'   => 'utf-8',
-                    'priority'  => 1
-                );
-                $this->email->initialize($config);
 
-                $this->email->set_mailtype("html");
-                $this->email->set_newline("\r\n");
-                $mesg = $this->load->view('pages/mailTpl', $data, true);
-                $this->email->to($emailpemohon);
-                $this->email->from('tester4pps@gmail.com', 'Perizinan DKI');
-                $this->email->reply_to('tester4pps@gmail.com', 'Perizinan DKI');
-                
-                $this->email->subject('Invoices E-topup');
-                $this->email->message($mesg);
-                // $this->email->attach('./uploads/pdf/' . $namaPdf . '.pdf');
-                // $email = $this->email->send();
-                if ($this->email->send()) {
-                    $result = $this->returnResultCustom(true,'Success send mail');
-                    //Update DB Permohonan
-                    $this->db->query("UPDATE permohonan SET code='$generatedCode' WHERE token='$tokenpemohon'");
-                } else {
-                    $result = $this->returnResultCustom(false,'Failed to send mail');
-                    // show_error($this->email->print_debugger());
+                if($decoder->rowCount==1){
+                    $decodeData = $decoder->row[0];
+                    $emailpemohon = $decodeData->email;
+                    $tokenpemohon = $decodeData->token;
+                    $generatedCode = $this->randstr();
+                    $data = array();
+                    $data['title'] = "Verifikasi Kode";
+                    $data['type'] = "verifikasikode";
+                    $data['generatedCode'] = $generatedCode;
+                    $data['nomor_token'] = $tokenpemohon;
+                    $data['nama_pemohon'] = $decodeData->nama_pemohon;
+                    $config = array(
+                        'protocol'  => 'smtp',
+                        'smtp_host' => 'ssl://smtp.gmail.com',
+                        'smtp_port' => 465,
+                        'smtp_user' => 'tester4pps@gmail.com',
+                        'smtp_pass' => '5exP1stol2105',
+                        'mailtype'  => 'html',
+                        'wordwrap'  => TRUE,
+                        'charset'   => 'utf-8',
+                        'priority'  => 1
+                    );
+                    $this->email->initialize($config);
+
+                    $this->email->set_mailtype("html");
+                    $this->email->set_newline("\r\n");
+                    $mesg = $this->load->view('pages/mailTpl', $data, true);
+                    $this->email->to($emailpemohon);
+                    $this->email->from('tester4pps@gmail.com', 'Perizinan DKI');
+                    $this->email->reply_to('tester4pps@gmail.com', 'Perizinan DKI');
+                    
+                    $this->email->subject('Invoices E-topup');
+                    $this->email->message($mesg);
+                    // $this->email->attach('./uploads/pdf/' . $namaPdf . '.pdf');
+                    // $email = $this->email->send();
+                    if ($this->email->send()) {
+                        $result = $this->returnResultCustom(true,'Success send mail');
+                        //Update DB Permohonan
+                        $this->db->query("UPDATE permohonan SET code='$generatedCode' WHERE token='$tokenpemohon'");
+                    } else {
+                        $result = $this->returnResultCustom(false,'Failed to send mail');
+                        // show_error($this->email->print_debugger());
+                    }
+                }else{
+                    $result = $this->returnResultCustom(false,'Tidak ditemukan data dengan nomor token '.$token);
                 }
+                
             }else{
-                $result = $this->returnResultCustom(false,'Oops, missing parameter');
+                $result = $this->returnResultCustom(false,'Oops, parameter tidak boleh kosong');
             }
             echo json_encode($result);
 
