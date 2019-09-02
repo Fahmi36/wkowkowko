@@ -7,6 +7,15 @@
 body {
     font-family: "Roboto", sans-serif;
 }
+.btn:focus {
+    box-shadow: none;
+}
+.fs-40px {
+    font-size: 40px!important;
+}
+.w-35 {
+    width: 35% !important;
+}
 
 .bg-pelayanan {
     background: #ff6704;
@@ -48,7 +57,7 @@ body {
     flex-direction: column;
     width: 65%;
     height: 100%;
-    padding: 25px;
+    padding: 0px 20px 20px 20px;
     text-align: center;
     background: #fff;
     transition: all 0.6s ease-in;
@@ -97,6 +106,8 @@ body {
 }
 .form__heading {
     font-size: 40px;
+    line-height: 45px;
+    color: #063f4f;
     /*margin-bottom: 15px;*/
 }
 .form__field {
@@ -145,13 +156,13 @@ body {
     display: inline-block;
     margin-left: 5px;
     margin-right: 5px;
-    border: 1px solid #333;
+    border: 1px solid #063f4f;
     width: 30px;
     height: 30px;
     border-radius: 50%;
 }
 .list__inline .list__link {
-    color: #333;
+    color: #063f4f;
     text-decoration: none;
 }
 .list__inline .list__icon {
@@ -249,10 +260,20 @@ body {
     background: #f7f7f7;
     color: #ff6704;
 }
-.btn--main_luas {
-    height: 70px;
-    font-size: 30px;
+.btn--sectionstep {
+    border-radius: 0px;
+    width: 40%;
+    height: 50px;
+    font-size: 18px;
     font-weight: bold;
+}
+.btn--second:hover {
+    color: #fff;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #ff6704;
+}
+.btn--second {
+    background: linear-gradient(45deg, rgb(162, 53, 86) 0%, rgb(255, 0, 0) 68%, rgb(216, 190, 56) 100%);
+    color: #fff;
 }
 .btn:hover {
     cursor: pointer;
@@ -288,7 +309,7 @@ body {
 }
 
 /*inputs*/
-#msform input, #msform textarea {
+#msform input, #msform textarea, #stepContainer input, #stepContainer textarea {
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 0px;
@@ -299,7 +320,7 @@ body {
     font-size: 13px;
 }
 
-#msform input:focus, #msform textarea:focus {
+#msform input:focus, #msform textarea:focus, #stepContainer input:focus, #stepContainer textarea:focus {
     -moz-box-shadow: none !important;
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
@@ -313,9 +334,9 @@ body {
 
 /*buttons*/
 
-#msform .action-button-previous {
+#msform .action-button-previous, #stepContainer .action-button-previous {
     width: 100px;
-    color: #333;
+    color: #063f4f;
     border: 0 none;
     /*border-radius: 25px;*/
     cursor: pointer;
@@ -323,7 +344,7 @@ body {
     margin: 10px 5px;
 }
 
-#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+#msform .action-button-previous:hover, #msform .action-button-previous:focus, #stepContainer .action-button-previous:hover, #stepContainer .action-button-previous:focus {
     box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
 }
 
@@ -356,7 +377,7 @@ body {
     list-style-type: none;
     text-transform: uppercase;
     font-size: 9px;
-    width: 14%;
+    width: 25%;
     float: left;
     position: relative;
     letter-spacing: 1px;
@@ -507,6 +528,36 @@ body {
     font-weight: 600;
 }
 
+.checking-detail {
+    padding: 16px 16px 0 16px;
+}
+.checking-detail_item {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 0.7rem;
+}
+.checking-detail_item_label {
+    color: #063f4f;
+    font-size: .875rem;
+    /*width: 6.25rem;*/
+    text-align: left;
+}
+.checking-detail_item_div {
+    height: .9375rem;
+    -ms-flex-align: center!important;
+    align-items: center!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    width: 100%;
+}
+.checking-detail_item_div_1 {
+    font-size: .875rem;
+    font-weight: 600;
+}
+
 /*UPLOAD*/
 .custom-file-input {
     cursor: pointer;
@@ -517,6 +568,7 @@ body {
     background: #ff6704;
     color: #fff!important;
     border-color: #ff6704;
+    width: 100%;
 }
 .radioBtn .notActive{
     color: #ff6704!important;
@@ -530,4 +582,103 @@ body {
     margin-bottom: 0px!important;
     text-align: left;
     color: #6c757d !important;
+}
+
+/*CUSTOM STEP WIZARD*/
+#stepContainer {
+    width: 100%;
+}
+#stepContainer .stepWizard:not(:first-of-type) {
+    display: none;
+}
+.btn-start {
+    height: 100%;
+    width: 45%;
+    border-radius: 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.7em;
+}
+
+.btn--selects {
+    border: 2px #fe6937 solid;
+    width: 100%;
+    margin-bottom: 10px;
+    height: 100%;
+    font-size: 16px;
+    background: #edeeee;
+}
+.btn--selects:hover {
+    background: linear-gradient(45deg, rgba(252,110,152,1) 0%, rgba(255,103,0,1) 68%, rgba(255,103,0,1) 100%);
+    color: #fff;
+    border: 2px #ffffff solid;
+    font-weight: bold;
+}
+
+/*CUSTOM BS*/
+.nav-tabs .nav-link.active {
+    color: #ff6700;
+}
+.nav-tabs .nav-link {
+    color: #212529;
+}
+.btn-selPerizinan {
+    border: 1px #ddd solid;
+    color: #6b6b6b;
+    height: 100%;
+    width: 100%;
+    display:flex;/*CSS3*/
+    align-items:center;/*Vertical align*/
+    justify-content:center;/*horizontal align*/
+}
+.btn-selPerizinan:hover {
+    background: linear-gradient(45deg, rgba(252,110,152,1) 0%, rgba(255,103,0,1) 68%, rgba(255,103,0,1) 100%);
+    color: #fff;
+}
+
+
+/* MEDIA FOR RESPONSIVE
+ Extra small devices (portrait phones, less than 576px)
+ No media query for `xs` since this is the default in Bootstrap
+ */
+
+@media screen and (min-width: 768px) {
+
+}
+@media (max-width: 768px) {
+    .form__container {
+        width: 100%;
+        height: 100%;
+    }
+    .overlay-container {
+        width: 0%;
+        display: none !important;
+    }
+    .form__heading {
+        font-size: 21px;
+        letter-spacing: 1px;
+    }
+    .btn-start {
+        height: 2.3em;
+        font-size: 1rem;
+        letter-spacing: 3px;
+        width: 100%;
+    }
+}
+
+
+.bg-shattered::after {
+    content: "";
+    background-image: url(../img/shattered.png);
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+.bg-an {
+    background-color: #ffcba3;
+    background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png");
 }

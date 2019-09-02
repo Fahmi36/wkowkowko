@@ -20,11 +20,11 @@ require([
   "dojo/domReady!",
   ], function(
     Locator,
-    TileLayer, 
+    TileLayer,
     Basemap,
     Map,
     MapView,
-    SimpleMarkerSymbol, 
+    SimpleMarkerSymbol,
     SimpleLineSymbol,
     Color,
     Locate,
@@ -63,7 +63,7 @@ require([
     var map = new Map({
       basemap: "hybrid"
     });
-    
+
     // hanya tampil maps jakarta tampilan sederhana
     // var map = new Map({
     //   basemap: myBasemap,
@@ -76,7 +76,7 @@ require([
       center: [106.827130, -6.175876],
       zoom: 17
     });
-    // end Setting maps 
+    // end Setting maps
 
     // Start symbol , setting jika ingin mengganti Simbol
     var makerSymbol = {
@@ -232,11 +232,19 @@ require([
           view.popup.content = 'Zona tidak di ketahui , Silakan pilih lokasi terdekat';
           $("#zona").val("");
           $("#subzona").val("");
+          var availableTags = [''];
+          $( "#fungsi_bangunan" ).autocomplete({
+            source: function(request, response) {
+              var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+              response(results.slice(0, 3));
+            }
+          });
         });
       locatorTask.locationToAddress(locateBtn.graphic.geometry).then(function(response){
-        // Di matikan Karena blm ada permintaan / kecamatan 
+        // Di matikan Karena blm ada permintaan / kecamatan
         // view.popup.title = response.address;
-        // parksLayer.definitionExpression = "KECAMATAN = '"+response.attributes.City.toUpperCase()+"'";
+        parksLayer.definitionExpression = "KECAMATAN = '"+response.attributes.City.toUpperCase()+"'";
         // map.add(parksLayer);
         $("#alamat").val(response.address);
       }).catch(function(err) {
@@ -274,7 +282,7 @@ require([
     // Mulai Action Jika search sudah di klik
     searchWidget.on("select-result", function(event){
       view.graphics.removeAll();
-      // event.stopPropagation(); 
+      // event.stopPropagation();
       var lat = Math.round(event.result.feature.geometry.latitude * 1000000)/ 1000000;
       var lon = Math.round(event.result.feature.geometry.longitude * 1000000)/ 1000000;
 
@@ -314,7 +322,15 @@ require([
           view.popup.title = "Alamat Tidak di Temukan";
           view.popup.content = 'Zona tidak di ketahui , Silakan pilih lokasi terdekat';
           $("#zona").val("");
-          $("#subzona").val("");
+          $("#subzona").val("");          
+          var availableTags = [''];
+          $( "#fungsi_bangunan" ).autocomplete({
+            source: function(request, response) {
+              var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+              response(results.slice(0, 3));
+            }
+          });
         });
       }).catch(function(error) {
         console.log(error);
@@ -322,9 +338,9 @@ require([
 
 
       locatorTask.locationToAddress(event.result.feature.geometry).then(function(response){
-            // Di matikan Karena blm ada permintaan / kecamatan 
+            // Di matikan Karena blm ada permintaan / kecamatan
             // view.popup.content = response.address;
-            // parksLayer.definitionExpression = "KECAMATAN = '"+response.attributes.City.toUpperCase()+"'";
+            parksLayer.definitionExpression = "KECAMATAN = '"+response.attributes.City.toUpperCase()+"'";
             // map.add(parksLayer);
             $("#alamat").val(response.address);
             view.popup.title = response.address;
@@ -357,7 +373,7 @@ require([
       view.popup.open({
         // Di matikan Karena title sekarang pakai alamat
         // title: "Koordinat [" + lat + ", " + lon + "]",
-        location: event.mapPoint 
+        location: event.mapPoint
       });
 
       view.hitTest(event.screenPoint).then(({ results }) => {
@@ -366,7 +382,7 @@ require([
           response) {
           $("#alamat").val(response.address);
           view.popup.title = response.address;
-          // Di matikan Karena blm ada permintaan / kecamatan 
+          // Di matikan Karena blm ada permintaan / kecamatan
           // parksLayer.definitionExpression = "KECAMATAN = '"+response.attributes.City.toUpperCase()+"'";
           // map.add(parksLayer);
         }).catch(function(err) {
@@ -376,7 +392,15 @@ require([
       }).catch(function(error) {
         view.popup.content = 'Zona tidak di ketahui , Silakan pilih lokasi terdekat';
         $("#zona").val("");
-        $("#subzona").val("");
+        $("#subzona").val("");          
+        var availableTags = [''];
+          $( "#fungsi_bangunan" ).autocomplete({
+            source: function(request, response) {
+              var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+              response(results.slice(0, 3));
+            }
+          });
       });
       var points = [
       [lon, lat]
@@ -385,12 +409,12 @@ require([
       arrayUtils.forEach(points, function(point) {
        var graphic = new Graphic(new Point(point), makerSymbol);
        view.graphics.add(graphic);
-       view.on("drag",(event) => {
-        dragpoint(event);
-      });
+      //  view.on("drag",(event) => {
+      //   dragpoint(event);
+      // });
      });
     });
-    // End klik maps 
+    // End klik maps
     function dragpoint(event) {
       var screenPoint = {
         x: event.x,
@@ -409,7 +433,7 @@ require([
         view.popup.open({
           // Di matikan Karena title sekarang pakai alamat
           // title: "Koordinat: [" + lat + ", " + lon + "]",
-          location: g.geometry 
+          location: g.geometry
         });
         var point = {
           type: "point",
@@ -429,13 +453,71 @@ require([
            view.popup.content = '<table class="esri-widget__table" summary="List of attributes and values"><tbody><tr><th class="esri-feature__field-header">Kecamatan</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['KECAMATAN']+'</td></tr><tr><th class="esri-feature__field-header">Kelurahan</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['KELURAHAN']+'</td></tr><tr><th class="esri-feature__field-header">Sublok</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['SUB_BLOK']+'</td></tr><tr><th class="esri-feature__field-header">Zona</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['ZONA']+'</td></tr><tr><th class="esri-feature__field-header">Sub Zona</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['SUB_ZONA']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Bersyarat</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['BERSYARAT']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Dizinkan</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['DIIZINKAN']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Terbatas</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['TERBATAS']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Terbatas Bersyarat</th><td class="esri-feature__field-data">' + results[1].graphic.attributes['TERBATAS_BERSYARAT']+'</td></tr></tbody></table>';
            $("#zona").val(results[1].graphic.attributes['ZONA']);
            $("#subzona").val(results[1].graphic.attributes['SUB_ZONA']);
+           var izinkan = results[1].graphic.attributes['DIIZINKAN'].split(',');
+           var b_syarat = results[1].graphic.attributes['BERSYARAT'].split(',');
+           var t_batas = results[1].graphic.attributes['TERBATAS'].split(',');
+           var t_bersyarat = results[1].graphic.attributes['TERBATAS_BERSYARAT'].split(',');
+           var a = 0;
+           var i = 0;
+           var u = 0;
+           var e = 0;
+           var hasil = "";
+            for (a; a< izinkan.length; a++) {
+              hasil += izinkan[a] +"(Perizinan Yang di Perbolehkan),";
+            }
+            for (i; i< b_syarat.length; i++) {
+              hasil += b_syarat[i] +"(Perizinan Bersyarat),";
+            }
+            for (u; u< t_batas.length; u++) {
+              hasil += t_batas[u] +"(Perizinan Terbatas),";
+            }
+            for (e; e< t_bersyarat.length; e++) {
+              hasil += t_bersyarat[e] +"(Perizinan Terbatas Bersyarat),";
+            }
+            var availableTags = hasil.split(',');
+            $( "#fungsi_bangunan" ).autocomplete({
+              source: function(request, response) {
+                var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+                response(results.slice(0, 3));
+              }
+            });
          }else{
            view.popup.content = '<table class="esri-widget__table" summary="List of attributes and values"><tbody><tr><th class="esri-feature__field-header">Kecamatan</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['KECAMATAN']+'</td></tr><tr><th class="esri-feature__field-header">Kelurahan</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['KELURAHAN']+'</td></tr><tr><th class="esri-feature__field-header">Sublok</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['SUB_BLOK']+'</td></tr><tr><th class="esri-feature__field-header">Zona</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['ZONA']+'</td></tr><tr><th class="esri-feature__field-header">Sub Zona</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['SUB_ZONA']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Bersyarat</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['BERSYARAT']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Dizinkan</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['DIIZINKAN']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Terbatas</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['TERBATAS']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Terbatas Bersyarat</th><td class="esri-feature__field-data">' + results[0].graphic.attributes['TERBATAS_BERSYARAT']+'</td></tr></tbody></table>';
            $("#zona").val(results[0].graphic.attributes['ZONA']);
            $("#subzona").val(results[0].graphic.attributes['SUB_ZONA']);
+           var izinkan = results[0].graphic.attributes['DIIZINKAN'].split(',');
+           var b_syarat = results[0].graphic.attributes['BERSYARAT'].split(',');
+           var t_batas = results[0].graphic.attributes['TERBATAS'].split(',');
+           var t_bersyarat = results[0].graphic.attributes['TERBATAS_BERSYARAT'].split(',');
+           var a = 0;
+           var i = 0;
+           var u = 0;
+           var e = 0;
+           var hasil = "";
+            for (a; a< izinkan.length; a++) {
+              hasil += izinkan[a] +"(Perizinan Yang di Perbolehkan),";
+            }
+            for (i; i< b_syarat.length; i++) {
+              hasil += b_syarat[i] +"(Perizinan Bersyarat),";
+            }
+            for (u; u< t_batas.length; u++) {
+              hasil += t_batas[u] +"(Perizinan Terbatas),";
+            }
+            for (e; e< t_bersyarat.length; e++) {
+              hasil += t_bersyarat[e] +"(Perizinan Terbatas Bersyarat),";
+            }
+            var availableTags = hasil.split(',');
+            $( "#fungsi_bangunan" ).autocomplete({
+              source: function(request, response) {
+                var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+                response(results.slice(0, 3));
+              }
+            });
          }
          locatorTask.locationToAddress(g.geometry).then(function(response) {
-            // Di matikan Karena blm ada permintaan / kecamatan 
+            // Di matikan Karena blm ada permintaan / kecamatan
             // parksLayer.definitionExpression = "KECAMATAN = '"+response.attributes.City.toUpperCase()+"'";
             // map.add(parksLayer);
             view.popup.title = response.address;
@@ -446,10 +528,21 @@ require([
           });
         }
       }).catch(function(err) {
+        console.log(err);
         view.popup.title = "Alamat Tidak di Temukan";
         view.popup.content = 'Zona tidak di ketahui , Silakan pilih lokasi terdekat';
+        // $("#idapa").val()
         $("#zona").val("");
         $("#subzona").val("");
+        var availableTags = [''];
+          $( "#fungsi_bangunan" ).autocomplete({
+            source: function(request, response) {
+              var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+              response(results.slice(0, 3));
+            }
+          });
+        $("#izinkan").val("");
       });
     }
     //end Function Drag marker
@@ -460,10 +553,75 @@ require([
        view.popup.content = '<table class="esri-widget__table" summary="List of attributes and values"><tbody><tr><th class="esri-feature__field-header">Kecamatan</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['KECAMATAN']+'</td></tr><tr><th class="esri-feature__field-header">Kelurahan</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['KELURAHAN']+'</td></tr><tr><th class="esri-feature__field-header">Sublok</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['SUB_BLOK']+'</td></tr><tr><th class="esri-feature__field-header">Zona</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['ZONA']+'</td></tr><tr><th class="esri-feature__field-header">Sub Zona</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['SUB_ZONA']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Bersyarat</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['BERSYARAT']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Dizinkan</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['DIIZINKAN']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Terbatas</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['TERBATAS']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Terbatas Bersyarat</th><td class="esri-feature__field-data">' + evt[1].graphic.attributes['TERBATAS_BERSYARAT']+'</td></tr></tbody></table>';
        $("#zona").val(evt[1].graphic.attributes['ZONA']);
        $("#subzona").val(evt[1].graphic.attributes['SUB_ZONA']);
+        var izinkan = evt[1].graphic.attributes['DIIZINKAN'].split(',');
+       var b_syarat = evt[1].graphic.attributes['BERSYARAT'].split(',');
+       var t_batas = evt[1].graphic.attributes['TERBATAS'].split(',');
+       var t_bersyarat = evt[1].graphic.attributes['TERBATAS_BERSYARAT'].split(',');
+           var a = 0;
+           var hasil = "";
+           for (a; a< izinkan.length; a++) {
+              hasil += izinkan[a] +"(Perizinan Yang di Perbolehkan),";
+           }
+           var i = 0;
+           for (i; i< b_syarat.length; i++) {
+              hasil += b_syarat[i] +"(Perizinan Bersyarat),";
+           }
+           var u = 0;
+           for (u; u< t_batas.length; u++) {
+              hasil += t_batas[u] +"(Perizinan Terbatas),";
+           }
+           var e = 0;
+           for (e; e< t_bersyarat.length; e++) {
+              hasil += t_bersyarat[e] +"(Perizinan Terbatas Bersyarat),";
+           }
+
+       var availableTags = hasil.split(',');
+       // console.log([availableTags])
+        $("#fungsi_bangunan").val("");
+        $( "#fungsi_bangunan" ).autocomplete({
+          source: function(request, response) {
+            var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+            response(results.slice(0, 3));
+          }
+        });
+
      }else{
        view.popup.content = '<table class="esri-widget__table" summary="List of attributes and values"><tbody><tr><th class="esri-feature__field-header">Kecamatan</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['KECAMATAN']+'</td></tr><tr><th class="esri-feature__field-header">Kelurahan</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['KELURAHAN']+'</td></tr><tr><th class="esri-feature__field-header">Sublok</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['SUB_BLOK']+'</td></tr><tr><th class="esri-feature__field-header">Zona</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['ZONA']+'</td></tr><tr><th class="esri-feature__field-header">Sub Zona</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['SUB_ZONA']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Bersyarat</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['BERSYARAT']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Dizinkan</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['DIIZINKAN']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Terbatas</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['TERBATAS']+'</td></tr><tr><th class="esri-feature__field-header">Perizinan Terbatas Bersyarat</th><td class="esri-feature__field-data">' + evt[0].graphic.attributes['TERBATAS_BERSYARAT']+'</td></tr></tbody></table>';
        $("#zona").val(evt[0].graphic.attributes['ZONA']);
        $("#subzona").val(evt[0].graphic.attributes['SUB_ZONA']);
+       var izinkan = evt[0].graphic.attributes['DIIZINKAN'].split(',');
+       var b_syarat = evt[0].graphic.attributes['BERSYARAT'].split(',');
+       var t_batas = evt[0].graphic.attributes['TERBATAS'].split(',');
+       var t_bersyarat = evt[0].graphic.attributes['TERBATAS_BERSYARAT'].split(',');
+           var a = 0;
+           var hasil = "";
+           for (a; a< izinkan.length; a++) {
+              hasil += izinkan[a] +"(Perizinan Yang di Perbolehkan),";
+           }
+            var i = 0;
+           for (i; i< b_syarat.length; i++) {
+              hasil += b_syarat[i] +"(Perizinan Bersyarat),";
+           }
+           var u = 0;
+           for (u; u< t_batas.length; u++) {
+              hasil += t_batas[u] +"(Perizinan Terbatas),";
+           }
+           var e = 0;
+           for (e; e< t_bersyarat.length; e++) {
+              hasil += t_bersyarat[e] +"(Perizinan Terbatas Bersyarat),";
+           }
+
+       var availableTags = hasil.split(',');
+       // console.log([availableTags])
+        $("#fungsi_bangunan").val("");
+        $( "#fungsi_bangunan" ).autocomplete({
+          source: function(request, response) {
+            var results = $.ui.autocomplete.filter(availableTags, request.term);
+
+            response(results.slice(0, 3));
+          }
+        });
      }
    }
    // End Function Klik
